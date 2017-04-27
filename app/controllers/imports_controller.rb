@@ -16,7 +16,7 @@ class ImportsController < ApplicationController
       spreadsheet = open_spreadsheet(file)
     rescue => exception
       flash[:error] = "#{file.nil? ? 'File' : file.original_filename} is in the wrong format. Has to be .xls or .xlsx"
-      return redirect_to root_url
+      return redirect_to dashboard_path
     end
 
     # Parses each of the sheets
@@ -35,7 +35,7 @@ class ImportsController < ApplicationController
       questions = Question.parse(spreadsheet)
     rescue => exception
       flash[:error] = EXCEPTION_ERROR_MSG
-      return redirect_to root_url
+      return redirect_to dashboard_path
     end
     all_models = [competencies, levels, paradigms, questions]
     new_models = [competencies, new_levels, new_paradigms, questions]
@@ -44,7 +44,7 @@ class ImportsController < ApplicationController
     # If any of the new models are not valid, all errors that need to be fixed will be aggregated.
     unless validate_save_models(new_models)
       aggregate_errors(all_models)
-      return redirect_to root_url
+      return redirect_to dashboard_path
     end
 
     # Part 2
@@ -56,7 +56,7 @@ class ImportsController < ApplicationController
     rescue => exception
       rollback_saved_models(new_models)
       flash[:error] = EXCEPTION_ERROR_MSG
-      return redirect_to root_url
+      return redirect_to dashboard_path
     end
     dependent_models = [indicators, resources]
 
@@ -65,7 +65,7 @@ class ImportsController < ApplicationController
     unless validate_save_models(dependent_models)
       rollback_saved_models(new_models)
       aggregate_errors(dependent_models)
-      return redirect_to root_url
+      return redirect_to dashboard_path
     end
 
     # Part 3
@@ -76,7 +76,7 @@ class ImportsController < ApplicationController
     rescue => exception
       rollback_saved_models(new_models + dependent_models)
       flash[:error] = EXCEPTION_ERROR_MSG
-      return redirect_to root_url
+      return redirect_to dashboard_path
     end
     dependent_models_2 = [indicator_resources, indicator_questions]
 
@@ -84,12 +84,12 @@ class ImportsController < ApplicationController
     unless validate_save_models(dependent_models_2)
       rollback_saved_models(new_models + dependent_models)
       aggregate_errors(dependent_models_2)
-      return redirect_to root_url
+      return redirect_to dashboard_path
     end
 
     # Redirect to the original page with success message if no errors have occurred in any of the models
     flash[:notice] = "Successfully uploaded and imported the #{file.original_filename} spreadsheet."
-    redirect_to root_url
+    redirect_to dashboard_path
   end
 
 

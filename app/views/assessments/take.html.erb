@@ -1,21 +1,29 @@
-<h1><%= "Take #{@competency.name} Assessment" %></h1>
+<div id="take-assessment">
+  <h2><%= "#{@competency.name} Assessment" %></h2>
 
-<div id="assessment-errors"></div>
-
-<% if @questions.empty? %>
-  <p><em>There are no questions for this assessment at this time.</em></p>
-<% else %>
-  <div id="assessment-progress">
-    <div id="assessment-bar"></div>
+  <div class="row">
+    <div id="assessment-errors"></div>
   </div>
 
-  <%= render "form" %>
+  <% if @questions.empty? %>
+    <p><em>There are no questions for this assessment at this time.</em></p>
+  <% else %>
 
-  <script>
-    initAssessment(<%= @questions.length %>);
-  </script>
+    <div class="row">
+      <div id="assessment-progress">
+        <div id="assessment-bar"></div>
+      </div>
+    </div>
 
-<% end %>
+    <%= render "form" %>
 
-<br>
-<%= link_to "Pick Another Assessment", assessments_path %>
+    <script>
+      initAssessment(<%= @questions.length %>);
+    </script>
+
+  <% end %>
+
+  <div class="row">
+    <%= link_to "Pick Another Assessment", assessments_path %>
+  </div>
+</div>

@@ -35,13 +35,23 @@ class IndicatorTest < ActiveSupport::TestCase
     setup do
       create_competencies
       create_levels
+      create_paradigms
       create_indicators
+      create_questions
+      create_indicator_questions
+      create_resources
+      create_indicator_resources
     end
 
     teardown do
       remove_competencies
       remove_levels
+      remove_paradigms
       remove_indicators
+      remove_questions
+      remove_indicator_questions
+      remove_resources
+      remove_indicator_resources
     end
 
     # Test that objects are created properly
@@ -127,6 +137,26 @@ class IndicatorTest < ActiveSupport::TestCase
     should "have all inactive indicators listed" do
       assert_equal ["Able to identify apparent causes of a problem."],
         Indicator.inactive.alphabetical.map { |e| e.description }
+    end
+
+    should "delete dangling questions and resources" do
+      assert_equal false, @indicator1.questions.first.nil?
+      assert_equal false, @indicator1.resources.first.nil?
+      assert_equal false, @comm_dumm.nil?
+      assert_equal false, @indicator3.questions.first.nil?
+      @indicator1.destroy
+      @indicator3.destroy
+      assert_equal true, @indicator1.destroyed?
+      # @communication_q1, which is @indicator1's only question, is also
+      # connected to other indicators meaning it is not dangling and should not
+      # be deleted
+      assert_equal false, @indicator1.questions.first.destroyed?
+      # @comm_dumm, which is @indicator1's only resource, is not connected to
+      # other indicators so it is deleted
+      assert_equal true, @indicator1.resources.first.destroyed?
+      # @communication_q3, which is @indicator3's only question, is not connected
+      # to other indicators so it is deleted
+      assert_equal true, @indicator3.questions.first.destroyed?
     end
 
   end

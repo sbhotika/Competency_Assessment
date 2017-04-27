@@ -1,0 +1,40 @@
+<div id="tap-menu" class="fixed-action-btn">
+  <a id="menu" class="waves-effect waves-light btn btn-floating btn-large">
+    <i class="material-icons">menu</i>
+  </a>
+  <ul>
+    <li>
+      <a class="btn-floating tooltipped primary-color-background" data-position="left" data-delay="50" data-tooltip="Email yourself the report!">
+        <i class="material-icons">email</i>
+      </a>
+    </li>
+    <li> 
+      <a class="btn-floating tooltipped cmu-blue-background" data-position="left" data-delay="50" data-tooltip="Print out your report!">
+        <i class="material-icons">print</i>
+      </a>
+    </li>
+    <li>
+      <a class="btn-floating tooltipped cmu-green-background" data-position="left" data-delay="50" data-tooltip="Give us feedback!">
+        <i class="material-icons">feedback</i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="tap-target secondary-color-background" data-activates="menu">
+  <div class="tap-target-content white-text">
+    <h5 class="white-text">Save your Report!</h5>
+    <p>
+      Hover over here to learn how you can save your report. You can email a link of this report to yourself or print out a printer friendly version!
+    </p>
+    <p>Also please leave us some feedback!</p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(".tap-target").tapTarget("open");
+  $(".tap-target-origin").mouseenter(function(){
+    $(".tap-target").tapTarget("close");
+    $('.fixed-action-btn').openFAB();
+  });
+</script>

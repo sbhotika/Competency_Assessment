@@ -1,7 +1,44 @@
-<p>
-  <strong>Question:</strong> <%= @question.question %>
-</p>
-
-<p>
-  <strong>Active:</strong> <%= @question.active ? "Yes" : "No" %>
-</p>
+<div class="col s12 m6">
+  <div class="card blue-grey darken-1">
+    <div class="card-content white-text">
+      <span class="card-title">Question Details</span>
+      <p><%= @question.question %></p>
+      <br>
+      <p>This question is <%= @question.active ? "active" : "inactive" %></p>
+    </div>
+    <div class="card-action">
+      <%= link_to "Edit", edit_question_path(@question), class: "waves-effect waves-light btn" %>
+      <%= link_to "Delete", question_path(@question),
+          method: 'delete',
+          data: {confirm: "Are you sure you want to permanently delete #{@question.question}?"},
+          class: "waves-effect waves-light btn red" %>
+    </div>
+  </div>
+</div>
+<br><br>
+<h3>Indicator Question Mappings</h3>
+<% if @question.indicator_questions.empty? %>
+  <p><em>There are no Indicator Question mappings for this question.</em></p>
+<% else %>
+    <table class="striped responsive-table">
+      <thead>
+        <tr>
+          <th>Indicator</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @question.indicator_questions.each do |iq| %>
+          <tr>
+            <td><%= link_to iq.indicator.description, indicator_path(iq.indicator) %></td>
+            <td>
+              <%= link_to "Delete", indicator_question_path(iq),
+                  method: 'delete',
+                  data: {confirm: "Are you sure you want to permanently delete this mapping?"},
+                  class: "waves-effect waves-light btn red" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>

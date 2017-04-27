@@ -1,0 +1,19 @@
+<div class="col s12 m6">
+  <div class="card horizontal hoverable">
+    <div class="card-image">
+      <%= image_tag "logos/CMU-Tartan-Digital-Half.png" %>
+    </div>
+    <div class="card-stacked">
+      <% c = object %>
+      <div class="card-content">
+        <span class="card-title">
+          <%= link_to c.name, competency_path(c) %>
+        </span>
+        <span><%= c.description %></span>
+      </div>
+      <div class="card-action">
+        <%= link_to "Manage Competency", competency_path(c) %>
+      </div>
+    </div>
+  </div>
+</div>

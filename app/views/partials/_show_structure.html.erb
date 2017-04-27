@@ -13,8 +13,8 @@
   <%= "Edit #{opt}" %>
 <% end %>
 <br>
-<%= link_to(eval("#{model_name}_path(object)"), 
-    method: 'delete', 
+<%= link_to(eval("#{model_name}_path(object)"),
+    method: 'delete',
     data: {confirm: "Are you sure you want to permanently delete #{opt}?"}) do %>
   <%= "Delete #{opt}" %>
 <% end %>

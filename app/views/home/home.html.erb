@@ -1,9 +1,83 @@
-<h1>Home Page</h1>
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center">PDS Competency Assessment</h1>
+      <div class="row center">
+        <h5 class="header col s12 white-text">Our focus is you!</h5>
+      </div>
+      <div class="row center">
+        <%= link_to "Learn More", "#about", id: "download-button", class: "btn-large waves-effect waves-light" %>
+        <%= link_to "Take the Plunge", assessments_path, id: "download-button", class: "btn-large waves-effect waves-light" %>
+      </div>
+      <br><br>
 
-<h4>Import Data</h4>
-<%= form_tag parse_imports_path, multipart: true do %>
-  <%= file_field_tag :file, accept: ".xls,.xlsx" %>
-  <%= submit_tag "Import" %>
-<% end %>
-<br>
-<%= link_to "Take an Assessment", assessments_path %>
+    </div>
+  </div>
+  <div class="parallax">
+    <%= image_tag "cmu-banner-5.jpg" %>
+  </div>
+</div>
+
+<div id="about" class="container scrollspy">
+  <div class="section ">
+
+    <div class="row">
+      <div class="col s12 center">
+        <h3><i class="mdi-content-send brown-text"></i></h3>
+        <h4 class="header secondary-color">Who we are</h4>
+        <p class="center-align banner-text">You are your greatest advocate for your performance and your professional development. Whether you are interested in honing a skill to meet a current work challenge or developing new skills for career advancement, the Competency Assessment is designed to assist you.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="parallax-container">
+  <div class="parallax">
+    <%= image_tag "cmu-banner-4.jpg" %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="section">
+
+    <div class="row">
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">find_in_page</i></h2>
+          <h5 class="center secondary-color">Identify Competency</h5>
+
+          <p class="light center">So how does this work? Identify the competency you want to explore and begin your exciting journey of learning and professional growth.</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">assessment</i></h2>
+          <h5 class="center secondary-color">Take Assessment</h5>
+
+          <p class="light center">Through a series of questions, you are prompted to reflect on your abilities and behaviors.</p>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="icon-block">
+          <h2 class="center brown-text"><i class="material-icons">show_chart</i></h2>
+          <h5 class="center secondary-color">Get Results</h5>
+
+          <p class="light center">Based on your responses, you will receive a tailored report and professional development plan targeting resources and strategies you can use to build your competence.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row center">
+      <a id="download-button" href="<%= assessments_path %>" class="btn-large waves-effect waves-light">
+        Get Started!
+        <i class="material-icons right">send</i>
+      </a>
+    </div>
+
+  </div>
+</div>

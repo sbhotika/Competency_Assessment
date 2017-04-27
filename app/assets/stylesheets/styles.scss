@@ -1,0 +1,247 @@
+/*
+ * ============================================================================
+ * General CSS
+ * ============================================================================
+ */
+
+
+* {
+  font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+#main {
+  flex: 1 0 auto;
+}
+
+h1, h2 {
+  color: $cmu-dark-red;
+}
+
+footer {
+  background-color: $cmu-dark-gray !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.primary-color {
+  color: $cmu-red;
+}
+
+.secondary-color {
+  color: $cmu-teal;
+}
+
+.primary-color-background {
+  background-color: $primary-color;
+}
+
+.secondary-color-background {
+  background-color: $secondary-color;
+}
+
+.cmu-blue-background {
+  background-color: $cmu-blue;
+}
+
+.cmu-green-background {
+  background-color: $cmu-green;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+#toast-container {
+  top: auto !important;
+  right: 7%;
+  bottom: 10%;
+  left: auto !important;  
+}
+
+.navbar-fixed {
+  height: 90px;
+}
+
+h3, h4, h5, h6 {
+  color: $cmu-green;
+}
+
+
+/* Nav Bar */
+
+nav #cmu-logo {
+  margin: 5px 0px;
+  width: 25%;
+  min-width: 200px;
+}
+
+nav #logo-container {
+  width: 40%;
+  min-width: 200px;
+}
+
+nav #pds-logo {
+  padding-top: 5px;
+  width: 100%;
+  max-height: 64px;
+}
+
+nav .nav-content {
+  background-color: $cmu-dark-gray;
+}
+
+nav ul li.active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+nav ul li:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Admin Nav Bar */
+
+nav .admin-nav-content {
+  background-color: $cmu-teal;
+}
+
+
+/* Home Page */
+
+.banner-text {
+  font-size: 20px;
+}
+
+.header {
+  font-weight: 600;
+} 
+
+.parallax-container {
+  height: 450px;
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+/* About Page */
+
+#about .banner-text {
+  font-size: 16px;
+}
+
+#about button.modal-action.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#about .tabs {
+  overflow-x: hidden;
+}
+
+/*
+ * ============================================================================
+ * Assessment CSS
+ * ============================================================================
+ */
+
+/* Pick Assessment */
+
+#pick-assessment .card-image{
+  max-width: 20%;
+}
+
+#pick-assessment .card-image img{
+  height: 100%;
+  width: 100%;
+}
+
+#pick-assessment .card-title a {
+  color: $secondary-color;
+  font-weight: 600;
+}
+
+#pick-assessment .card-action a {
+  color: $cmu-dark-red;
+}
+
+
+/* Take Assessment */
+
+#assessment-progress {
+    width: 100%;
+    background-color: $cmu-dark-gray;
+}
+
+#assessment-bar {
+    width: 0%;
+    height: 30px;
+    background-color: $cmu-teal;
+    text-align: center;
+    line-height: 30px;
+    color: white; 
+    transition: all 0.5s ease;
+}
+
+#take-assessment form {
+  margin-top: 5%;
+}
+
+#take-assessment form .question {
+  font-size: 19px;
+}
+
+#assessment-submit {
+  background-color: $cmu-green;
+}
+
+
+/* Assessment Report */
+
+#tap-menu {
+  bottom: 45px;
+  right: 25px;
+}
+
+.tap-target-content {
+  top: 45px !important;
+}
+
+.collapsible-body.indicator {
+  padding: 0px;
+}
+
+.collection-header.paradigm {
+  padding: 0px 10px !important;
+}
+
+/*
+ * ============================================================================
+ * Admin Dashboard
+ * ============================================================================
+ */
+
+.center-text {
+  text-align: center;
+}
+
+ .dash-side-nav-btn {
+   font-size: 100%
+ }
+
+ #dash-cards .card-image{
+   max-width: 30%;
+ }

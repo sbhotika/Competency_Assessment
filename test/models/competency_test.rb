@@ -17,10 +17,24 @@ class CompetencyTest < ActiveSupport::TestCase
   context "With a proper context, " do
     setup do
       create_competencies
+      create_levels
+      create_paradigms
+      create_indicators
+      create_questions
+      create_resources
+      create_indicator_resources
+      create_indicator_questions
     end
 
     teardown do
       remove_competencies
+      remove_levels
+      remove_paradigms
+      remove_indicators
+      remove_questions
+      remove_resources
+      remove_indicator_resources
+      remove_indicator_questions
     end
 
     # Test that objects are created properly
@@ -45,6 +59,23 @@ class CompetencyTest < ActiveSupport::TestCase
     should "have all inactive competencies" do
       assert_equal ["Problem Solving"], Competency.inactive.alphabetical.map { |e| e.name }
     end
+
+    should "destroy all dependents when a competency is destroyed" do
+      assert_equal false, @communication.destroyed?
+      assert_equal false, @communication.indicators.first.destroyed?
+      assert_equal false, @communication.indicators.first.resources.first.destroyed?
+      assert_equal false, @communication.indicators.first.questions.first.destroyed?
+      assert_equal false, @communication.indicators.first.indicator_questions.first.nil?
+      assert_equal false, @communication.indicators.first.indicator_resources.first.nil?
+      @communication.destroy
+      assert_equal true, @communication.destroyed?
+      assert_equal true, @communication.indicators.first.destroyed?
+      assert_equal true, @communication.indicators.first.resources.first.destroyed?
+      assert_equal true, @communication.indicators.first.questions.first.destroyed?
+      assert_equal true, @communication.indicators.first.indicator_questions.first.nil?
+      assert_equal true, @communication.indicators.first.indicator_resources.first.nil?
+    end
+
   end
 
 end

@@ -14,13 +14,21 @@ class ResourceTest < ActiveSupport::TestCase
   # Test scopes
   context "With a proper context" do
     setup do
+      create_competencies
       create_paradigms
+      create_levels
       create_resources
+      create_indicators
+      create_indicator_resources
     end
 
     teardown do
+      remove_competencies
       remove_resources
+      remove_levels
       remove_paradigms
+      remove_indicators
+      remove_indicator_resources
     end
 
     should "show that all resources are created properly" do
@@ -41,7 +49,13 @@ class ResourceTest < ActiveSupport::TestCase
       assert_equal nil, @pub_speak.link
     end
 
-  end
+    should "delete associated indicator_resources when resources are deleted" do
+      assert_equal 1,@comm_dumm.indicator_resources.count
+      assert_equal false, @comm_dumm.indicator_resources.first.nil?
+      @comm_dumm.destroy
+      assert_equal true, @comm_dumm.indicator_resources.first.nil?
+    end
 
+  end
 
 end

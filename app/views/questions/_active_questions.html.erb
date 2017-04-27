@@ -2,7 +2,7 @@
 <% if @active_questions.empty? %>
   <p><em>There are no active questions at this time.</em></p>
 <% else %>
-    <table border="1">
+    <table class="striped responsive-table">
       <thead>
         <tr>
           <th>Question</th>
@@ -14,11 +14,12 @@
         <% @active_questions.each do |q| %>
           <tr>
             <td><%= link_to q.question, question_path(q) %></td>
-            <td><%= link_to "Edit", edit_question_path(q) %></td>
+            <td><%= link_to "Edit", edit_question_path(q), class: "waves-effect waves-light btn" %></td>
             <td>
               <%= link_to "Delete", question_path(q),
                   method: 'delete',
-                  data: {confirm: "Are you sure you want to permanently delete #{q.question}?"} %>
+                  data: {confirm: "Are you sure you want to permanently delete #{q.question}?"},
+                  class: "waves-effect waves-light btn red" %>
             </td>
           </tr>
         <% end %>

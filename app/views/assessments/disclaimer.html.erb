@@ -1,20 +1,28 @@
-<h1><%= "Disclaimer for #{@competency.name} Assessment" %></h1>
+<div id="assessment-disclaimer">
+  <h2><%= "Disclaimer for #{@competency.name} Assessment" %></h2>
 
-<%= form_tag(take_assessment_path(competency_id: @competency), method: :post) do %>
+  <div class="row">
+    <%= form_tag(take_assessment_path(competency_id: @competency), method: :post) do %>
 
-  <%= render partial: "partials/disclaimer_text" %>
+      <%= render partial: "partials/disclaimer_text" %>
 
-  <input type="checkbox" id="accept" name="accept" onclick="iAgree();">
-  <%= label_tag :accept, "I agree" %>
+      <input type="checkbox" id="accept" name="accept" onclick="iAgree();">
+      <%= label_tag :accept, "I agree" %>
 
-  <br><br>
+      <br><br>
 
-  <%= submit_tag "Take Assessment", id: "disclaimer-submit" %>
-<% end %>
+      <button id="disclaimer-submit" class="btn waves-effect waves-light" type="submit" name="action">
+        Take Assessment
+        <i class="material-icons right">send</i>
+      </button>
+    <% end %>
+  </div>
 
-<br>
-<%= link_to "Pick Another Assessment", assessments_path %>
+  <div class="row">
+    <%= link_to "Pick Another Assessment", assessments_path %>
+  </div>
 
-<script>
-  iAgree();
-</script>
+  <script>
+    iAgree();
+  </script>
+</div>

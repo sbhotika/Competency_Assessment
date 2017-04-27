@@ -16,17 +16,17 @@
   </div>
   <div>
     <%= f.label :competency_id %><br>
-    <%= f.collection_select :competency_id, @active_competencies, 
+    <%= f.collection_select :competency_id, @active_competencies,
       :id, :name, { prompt: "Choose a competency..." } %>
   </div>
   <div>
     <%= f.label :level_id %><br>
-    <%= f.collection_select :level_id, @active_levels, 
+    <%= f.collection_select :level_id, @active_levels,
       :id, :name, { prompt: "Choose a level..." } %>
   </div>
   <div>
-    <%= f.label :active %><br>
     <%= f.check_box :active %>
+    <%= f.label :active, id:"active" %><br>
   </div>
 
   <div>

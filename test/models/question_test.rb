@@ -45,7 +45,7 @@ class QuestionTest < ActiveSupport::TestCase
     end
 
     should "Show in alphabetical order" do
-      assert_equal [@decision_making_q2, @communication_q3, @problem_solving_q1, @decision_making_q1, 
+      assert_equal [@decision_making_q2, @communication_q3, @problem_solving_q1, @decision_making_q1,
                     @communication_q2, @communication_q1], Question.alphabetical
     end
 
@@ -53,6 +53,15 @@ class QuestionTest < ActiveSupport::TestCase
       assert_equal [@communication_q3, @communication_q2, @communication_q1], Question.for_competency(@communication.id).alphabetical
       assert_equal [@decision_making_q2, @decision_making_q1], Question.for_competency(@decision_making.id).alphabetical
       assert_equal [@problem_solving_q1], Question.for_competency(@problem_solving.id).alphabetical
+    end
+
+    should "delete all associated indicator_questions when a question is deleted" do
+      assert_equal 2,@communication_q1.indicator_questions.count
+      assert_equal false,@communication_q1.indicator_questions.first.nil?
+      assert_equal false,@communication_q1.indicator_questions.last.nil?
+      @communication_q1.destroy
+      assert_equal true, @communication_q1.indicator_questions.first.nil?
+      assert_equal true, @communication_q1.indicator_questions.last.nil?
     end
 
   end

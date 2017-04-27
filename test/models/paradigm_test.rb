@@ -15,11 +15,25 @@ class ParadigmTest < ActiveSupport::TestCase
 
   context "With a proper context," do
     setup do
+      create_competencies
+      create_levels
       create_paradigms
+      create_indicators
+      create_questions
+      create_resources
+      create_indicator_resources
+      create_indicator_questions
     end
 
     teardown do
+      remove_competencies
+      remove_levels
       remove_paradigms
+      remove_indicators
+      remove_questions
+      remove_resources
+      remove_indicator_resources
+      remove_indicator_questions
     end
 
     should "Create all test objects properly" do
@@ -37,6 +51,12 @@ class ParadigmTest < ActiveSupport::TestCase
     # test by_ranking scope
     should "Show paradigms in ascending ranking" do
       assert_equal ["Build Understanding", "Get Connected", "Do Something", "Learn More"], Paradigm.by_ranking.map { |e| e.name}
+    end
+
+    should "delete resources when a paradigm is deleted" do
+      assert_equal 1, @build_understanding.resources.count
+      @build_understanding.destroy
+      assert_equal 0,@build_understanding.resources.count
     end
 
   end

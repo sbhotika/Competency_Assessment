@@ -1,32 +1,60 @@
 <%= form_tag(generate_report_assessment_path(competency_id: @competency), 
   method: :post, onsubmit: "return validAssessment();") do %>
-  <% @questions.each_with_index do |question, index| %>
-    <%= content_tag :div, id: "question-#{index}", class: "hidden" do %>
-      <%= fields_for "questions[]", question do |qf| %>
-        <p><%= "#{(index + 1)}. #{question.question}" %></p>
-        <br>
-        <%= qf.radio_button :answer, 'always', :checked => false %> 
-        <%= qf.label :answer_always, 'Always' %>
 
-        <%= qf.radio_button :answer, 'often', :checked => false %> 
-        <%= qf.label :answer_often, 'Often' %>
-
-        <%= qf.radio_button :answer, 'sometimes', :checked => false %> 
-        <%= qf.label :answer_sometimes, 'Sometimes' %>
-
-        <%= qf.radio_button :answer, 'rarely', :checked => false %> 
-        <%= qf.label :answer_rarely, 'Rarely' %>
-
-        <%= qf.radio_button :answer, 'never', :checked => false %> 
-        <%= qf.label :answer_never, 'Never' %>
-
-        <%= qf.radio_button :answer, 'does not apply', :checked => false %> 
-        <%= qf.label :answer_does_not_apply, 'Does Not Apply' %>
+  <div class="row">
+    <% @questions.each_with_index do |question, index| %>
+      <%= content_tag :div, id: "question-#{index}", class: "hidden" do %>
+        <%= fields_for "questions[]", question do |qf| %>
+          <p class="question bold"><%= "#{(index + 1)}. #{question.question}" %></p>
+          <br>
+          <div class="row">
+            <div class="col s12 m2">
+              <%= qf.radio_button :answer, 'always', class: "with-gap", checked: false %> 
+              <%= qf.label :answer_always, 'Always' %>
+            </div>
+            <div class="col s12 m2">
+              <%= qf.radio_button :answer, 'often', class: "with-gap", checked: false %> 
+              <%= qf.label :answer_often, 'Often' %>
+            </div>
+            <div class="col s12 m2">
+              <%= qf.radio_button :answer, 'sometimes', class: "with-gap", checked: false %> 
+              <%= qf.label :answer_sometimes, 'Sometimes' %>
+            </div>
+            <div class="col s12 m2">
+              <%= qf.radio_button :answer, 'rarely', class: "with-gap", checked: false %> 
+              <%= qf.label :answer_rarely, 'Rarely' %>
+            </div>
+            <div class="col s12 m2">
+              <%= qf.radio_button :answer, 'never', class: "with-gap", checked: false %> 
+              <%= qf.label :answer_never, 'Never' %>
+            </div>
+            <div class="col s12 m2">
+              <%= qf.radio_button :answer, 'does not apply', class: "with-gap", checked: false %> 
+              <%= qf.label :answer_does_not_apply, 'Does Not Apply' %>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <br><br>
-  <%= submit_tag "Previous", type: "button", id: "assessment-prev", onclick: "previousQuestion();" %>
-  <%= submit_tag "Next", type: "button", id: "assessment-next", onclick: "nextQuestion();" %>
-  <%= submit_tag "Finish", id: "assessment-submit" %>
+  </div>
+
+  <div class="row center-align">
+    <button id="assessment-prev" class="btn waves-effect waves-light" type="button" name="action" onclick="previousQuestion();">
+      Prev
+      <i class="material-icons left">navigate_before</i>
+    </button>
+
+    <button id="assessment-next" class="btn waves-effect waves-light" type="button" name="action" onclick="nextQuestion();">
+      Next
+      <i class="material-icons right">navigate_next</i>
+    </button>
+  </div>
+  
+  <div class="row center-align">
+    <button id="assessment-submit" class="btn waves-effect waves-light" type="submit" name="action">
+      Finish
+      <i class="material-icons right">send</i>
+    </button>
+  </div>
+
 <% end %>

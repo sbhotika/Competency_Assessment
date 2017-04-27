@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="section">
+
+    <ul id="tabs-swipe-demo" class="tabs tabs-fixed-width">
+      <li class="tab col s3"><a class="active" href="#paradigms">Paradigms</a></li>
+      <li class="tab col s3"><a href="#competencies">Competencies</a></li>
+      <li class="tab col s3"><a href="#companion-champion">Companion to Champion</a></li>
+      <li class="tab col s3"><a href="#development-plan">Development Plan</a></li>
+    </ul>
+
+    <div id="paradigms" class="col s12">
+      <%= render "paradigm_tab" %>
+    </div>
+
+    <div id="competencies" class="col s12">
+      <%= render "competency_tab" %>
+    </div>
+
+    <div id="companion-champion" class="col s12">  
+      <%= render "companion_champion_tab" %>
+    </div>
+
+    <div id="development-plan" class="col s12">  
+      <%= render "plan_tab" %>
+    </div>
+  </div>
+</div>

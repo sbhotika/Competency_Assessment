@@ -1,0 +1,34 @@
+<h1 class="center-text">Dashboard</h1>
+<div class="divider"></div>
+<div class="row">
+  <div class="row center-text">
+    <h2> Active Competencies </h2>
+    <% if @inactive_competencies.empty? %>
+      <h4 class="dash-side-nav-btn"><a href="#" data-activates="slide-out" class="btn button-collapse disabled"><i class="material-icons right">toc</i>View Inactive Competencies</a></h4>
+    <% else %>
+      <h4 class="dash-side-nav-btn"><a href="#" data-activates="slide-out" class="btn button-collapse"><i class="material-icons right">toc</i>View Inactive Competencies</a></h4>
+    <% end %>
+  </div>
+  <ul id="slide-out" class="side-nav">
+    <li><a class="subheader">Inactive Competencies</a></li>
+    <li><div class="divider"></div></li>
+    <% @inactive_competencies.each do |c| %>
+      <li><%= link_to c.name, competency_path(c) %></li>
+    <% end %>
+ </ul>
+    <div class="row" id="dash-cards">
+      <% @active_competencies.each do |c| %>
+          <%= render partial: "partials/competency_card", locals: {object: c} %>
+      <% end %>
+  </div>
+</div>
+<div class="divider"></div>
+<div class="center-text">
+  <h2>Import Data</h2>
+  <%= form_tag parse_imports_path, multipart: true do %>
+    <%= file_field_tag :file, accept: ".xls,.xlsx" %>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Import
+      <i class="material-icons right">file_upload</i>
+    </button>
+  <% end %>
+</div>

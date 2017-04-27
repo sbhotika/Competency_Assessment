@@ -1,6 +1,6 @@
 class Level < ActiveRecord::Base
   # Relationships
-  has_many :indicators
+  has_many :indicators, :dependent => :destroy
 
   # Validations
   validates_presence_of :name, :description, :ranking
@@ -19,7 +19,7 @@ class Level < ActiveRecord::Base
   # Methods
   def self.parse(spreadsheet)
     levels_sheet = spreadsheet.sheet("Levels")
-    levels_hash = 
+    levels_hash =
       levels_sheet.parse(name: "Name", description: "Description", ranking: "Ranking")
 
     levels = []
@@ -27,7 +27,7 @@ class Level < ActiveRecord::Base
     levels_hash.each_with_index do |l, index|
       # Checks if a Level of the same name exists
       # If it does, then set the level to the existing level instance
-      # Else create a whole new level instance and add it to the 
+      # Else create a whole new level instance and add it to the
       # new_levels list in order to be saved later
       if Level.exists?(name: l[:name])
         level = Level.find_by_name(l[:name])

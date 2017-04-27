@@ -24,11 +24,25 @@ class LevelTest < ActiveSupport::TestCase
   # Scope and method tests
   context "With a proper context, " do
     setup do
+      create_competencies
       create_levels
+      create_paradigms
+      create_indicators
+      create_questions
+      create_resources
+      create_indicator_resources
+      create_indicator_questions
     end
 
     teardown do
+      remove_competencies
       remove_levels
+      remove_paradigms
+      remove_indicators
+      remove_questions
+      remove_resources
+      remove_indicator_resources
+      remove_indicator_questions
     end
 
     # Test that objects are created properly
@@ -70,5 +84,12 @@ class LevelTest < ActiveSupport::TestCase
     should "have all inactive levels" do
       assert_equal ["Novice"], Level.inactive.alphabetical.map { |e| e.name }
     end
+
+    should "delete all indicators associated" do
+      assert_equal 1, Indicator.for_level("Champion").count
+      @champion.destroy
+      assert_equal 0, Indicator.for_level("Champion").count
+    end
+
   end
 end

@@ -1,0 +1,33 @@
+<nav role="navigation" class="nav-extended">
+  <div class="nav-content">
+    <div class="container">
+      <a href="http://www.cmu.edu/">
+        <%= image_tag "logos/CMU_Logo_Horiz_White.png", id: "cmu-logo" %>
+      </a>
+    </div>
+  </div>
+
+  <div class="nav-wrapper admin-nav-content">
+    <div class="container">
+      <a id="logo-container" class="brand-logo left">Professional Development Services</a>
+      <ul class="right hide-on-med-and-down">
+        <li class="<%= 'active' if current_page?(competencies_path) %>"><%= link_to "Competencies", competencies_path %></li>
+        <li class="<%= 'active' if current_page?(resources_path) %>"><%= link_to "Resources", resources_path %></li>
+        <li class="<%= 'active' if current_page?(paradigms_path) %>"><%= link_to "Paradigms", paradigms_path %></li>
+        <li class="<%= 'active' if current_page?(levels_path) %>"><%= link_to "Levels", levels_path %></li>
+        <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li class="<%= 'active' if current_page?(competencies_path) %>"><%= link_to "Competencies", competencies_path %></li>
+        <li class="<%= 'active' if current_page?(resources_path) %>"><%= link_to "Resources", resources_path %></li>
+        <li class="<%= 'active' if current_page?(paradigms_path) %>"><%= link_to "Paradigms", paradigms_path %></li>
+        <li class="<%= 'active' if current_page?(levels_path) %>"><%= link_to "Levels", levels_path %></li>
+        <li class="<%= 'active' if current_page?(login_path) %>"><%= link_to "Login", login_path %></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="right button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+    </div>
+  </div>
+</nav>

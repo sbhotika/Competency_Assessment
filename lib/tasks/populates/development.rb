@@ -34,11 +34,11 @@ end
 # Step 3: Create Indicators
 indicators =
   [
-    ["Able to organize own thoughts and outline intended meaning of a message", 1, 3, true],
-    ["Able to identify and may employ active listening skills", 1, 3, true],
-    ["Able to identify common nonverbal cues", 1, 3, true],
-    ["Able to identify various media used to deliver messages", 1, 3, true],
-    ["Able to comprehend the content of oral and written messages by applying personal context to interpret the meaning", 1, 3, true],
+    ["Able to organize own thoughts and outline intended meaning of a message", 2, 3, true],
+    ["Able to identify and may employ active listening skills", 2, 3, true],
+    ["Able to identify common nonverbal cues", 2, 3, true],
+    ["Able to identify various media used to deliver messages", 2, 3, true],
+    ["Able to comprehend the content of oral and written messages by applying personal context to interpret the meaning", 2, 3, true],
     ["Able to present simple, familiar information to familiar audiences by using preferred method of communication", 1, 3, true],
     ["Able to present intentions and ideas to a familiar individual when prompted by the individual", 1, 3, true],
     ["Able to select the most appropriate medium of communication to deliver a menaningful message", 1, 2, true],

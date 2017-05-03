@@ -1,22 +1,35 @@
 class ResourcesController < ApplicationController
+  layout "admin"
+
   # Callback Methods
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   before_action :set_paradigm, only: [:new, :create, :edit, :update]
+  before_action :check_login
 
   # GET /resources
   def index
     @paradigms = Paradigm.all.alphabetical
-    @active_resources = Resource.active.alphabetical
-    @inactive_resources = Resource.inactive.alphabetical
+    # Check if we are coming from manage competency page vs. nav bar
+    # Nav bar should display all resources and won't have a competency id in the params
+    if(params[:competency_id])
+      @active_resources = Resource.for_competency(params[:competency_id]).active
+      @inactive_resources = Resource.for_competency(params[:competency_id]).inactive
+      @competency_id = params[:competency_id]
+    else
+      @active_resources = Resource.active.alphabetical
+      @inactive_resources = Resource.inactive.alphabetical
+    end
   end
 
   # GET /resources/:id
   def show
+    @competency_id = params[:competency_id]
   end
 
   # GET /resources/new
   def new
     @resource = Resource.new
+    @competency_id = params[:competency_id]
   end
 
   # POST /resources
@@ -32,6 +45,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources/:id/edit
   def edit
+    @competency_id = params[:competency_id]
   end
 
   # PATCH/PUT /resources/:id

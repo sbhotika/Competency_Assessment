@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>CMU PDS Competency Assessment</title>
+    <title>CompetentU - CMU PDS</title>
     <%= stylesheet_link_tag    "https://fonts.googleapis.com/icon?family=Material+Icons" %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -13,9 +13,9 @@
 
     <%= render :partial => "partials/nav_bar" %>
 
-    <%= render :partial => "partials/flash" %>
-
     <div id="main" class="<%= 'container' if !current_page?(root_path) and !current_page?(about_path) %>">
+      <%= render :partial => "partials/flash" %>
+
       <%= yield %>
     </div>
 

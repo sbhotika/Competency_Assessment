@@ -1,0 +1,10 @@
+<div class="card blue-grey darken-1">
+  <div class="card-content white-text">
+    <span class="card-title"><%=model_name.pluralize.capitalize%></span>
+  </div>
+  <div class="card-action">
+    <%= link_to(eval("#{model_name.pluralize}_path(:competency_id => #{@competency.id})")) do %>
+      Manage <%= model_name.pluralize.capitalize %>
+    <% end %>
+  </div>
+</div>

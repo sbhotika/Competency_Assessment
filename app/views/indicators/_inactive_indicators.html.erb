@@ -1,38 +1,30 @@
-<h2>Inactive Indicators</h2>
+<h2>Inactive Indicators for <%= link_to @competency.name, competency_path(@competency) %></h2>
 
-<% if @competencies.empty? %>
-  <p><em>There are no inactive indicators at this time.</em></p>
-<% end %>
-
-<% @competencies.each do |c| %>
-  <h4><%= link_to c.name, competency_path(c) %></h4>
-  <% if c.indicators.inactive.empty? %>
-    <p><em><%= "There are no inactive indicators at this time for the #{c.name} competency." %></em></p>
-  <% else %>
-    <table border="1">
-      <thead>
+<% if @inactive_indicators.empty? %>
+  <p><em><%= "There are no inactive indicators at this time for the #{@competency.name} competency." %></em></p>
+<% else %>
+  <table id="" class="display striped responsive-table" border="1">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Level</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inactive_indicators.each do |i| %>
         <tr>
-          <th>Description</th>
-          <th>Level</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
+          <td><%= link_to i.description, indicator_path(i) %></td>
+          <td><%= i.level.name %></td>
+          <td><%= link_to "Edit", edit_indicator_path(i, :competency_id => @competency_id) %></td>
+          <td>
+            <%= link_to "Delete", indicator_path(i),
+                method: 'delete',
+                data: {confirm: "Are you sure you want to permanently delete #{i.description}?"} %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% c.indicators.inactive.by_level.alphabetical.each do |i| %>
-          <tr>
-            <td><%= link_to i.description, indicator_path(i) %></td>
-            <td><%= link_to i.level.name, level_path(i.level) %></td>
-            <td><%= link_to "Edit", edit_indicator_path(i) %></td>
-            <td>
-              <%= link_to "Delete", indicator_path(i), 
-                  method: 'delete', 
-                  data: {confirm: "Are you sure you want to permanently delete #{i.description}?"} %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
-

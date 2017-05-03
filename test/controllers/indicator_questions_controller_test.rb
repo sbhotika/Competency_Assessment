@@ -9,6 +9,13 @@ class IndicatorQuestionsControllerTest < ActionController::TestCase
     create_indicators
     create_questions
     create_indicator_questions
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    iq_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = iq_controller
   end
 
   # Test that the create action creates a valid object

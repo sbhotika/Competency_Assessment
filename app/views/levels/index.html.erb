@@ -1,3 +1,10 @@
 <%= render partial: "partials/index_structure", locals: {model_name: "level",
                                                          primary: "active_levels",
                                                          secondary: "inactive_levels"} %>
+
+
+<a id="add-new" href="<%= new_level_path %>" class="btn-large waves-effect waves-light">
+ Add a New Level
+ <i class="material-icons right">library_add</i>
+</a>
+<br><br>

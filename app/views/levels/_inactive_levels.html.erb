@@ -2,7 +2,7 @@
 <% if @inactive_levels.empty? %>
   <p><em>There are no inactive levels at this time.</em></p>
 <% else %>
-    <table border="1">
+    <table id="" class="display striped responsive-table" border="1">
       <thead>
         <tr>
           <th>Name</th>
@@ -18,11 +18,12 @@
             <td><%= link_to l.name, level_path(l) %></td>
             <td><%= l.description %></td>
             <td><%= l.ranking %></td>
-            <td><%= link_to "Edit", edit_level_path(l) %></td>
+            <td><%= link_to "Edit", edit_level_path(l), class: "waves-effect waves-light btn" %></td>
             <td>
-              <%= link_to "Delete", level_path(l), 
-                  method: 'delete', 
-                  data: {confirm: "Are you sure you want to permanently delete #{l.name}?"} %>
+              <%= link_to "Delete", level_path(l),
+                  method: 'delete',
+                  data: {confirm: "Are you sure you want to permanently delete #{l.name}?"},
+                  class: "waves-effect waves-light btn red" %>
             </td>
           </tr>
         <% end %>

@@ -118,10 +118,10 @@ class IndicatorTest < ActiveSupport::TestCase
       assert_equal ["Engages in difficult conversations with others while maintaining respect.",
         "Able to present written communication in an easy–to-read format.",
         "Able to identify common nonverbal cues."],
-        Indicator.for_competency("Communication").by_level.map { |e| e.description }
+        Indicator.for_competency(1).by_level.map { |e| e.description }
 
-      assert_equal ["Able to identify apparent causes of a problem."],
-        Indicator.for_competency("Problem Solving").alphabetical.map { |e| e.description }
+      assert_equal ["Able to outline a plan to gather data that will aid in the completion of a familiar task."],
+        Indicator.for_competency(2).alphabetical.map { |e| e.description }
     end
 
     # test active scope

@@ -2,12 +2,19 @@
 <% if @active_resources.empty? %>
   <p><em>There are no active resources at this time.</em></p>
 <% else %>
+<div class="col s12">
+  <ul class="tabs active">
   <% @paradigms.each do |p| %>
-    <h4><%= link_to p.name, paradigm_path(p) %></h4>
-    <% if p.resources.active.empty? %>
+    <li class="tab col s3"><a href="#paradigm<%=p.id%>"><%= p.name %></a></li>
+  <% end %>
+  </ul>
+</div>
+  <% @paradigms.each do |p| %>
+  <div id="paradigm<%=p.id%>" class="col s12">
+    <% if @active_resources.for_paradigm(p.id).empty? %>
       <p><em><%= "There are no active resources at this time for the #{p.name} paradigm." %></em></p>
     <% else %>
-      <table border="1">
+      <table id="" class="display striped responsive-table" border="1">
         <thead>
           <tr>
             <th>Title</th>
@@ -17,24 +24,28 @@
           </tr>
         </thead>
         <tbody>
-          <% p.resources.active.each do |r| %>
+          <% @active_resources.for_paradigm(p.id).each do |r| %>
             <tr>
-              <td><%= link_to r.title.html_safe, resource_path(r) %></td>
+              <td><%= link_to r.title.html_safe, resource_path(r, :competency_id => @competency_id) %></td>
               <% if !r.link.present? %>
                 <td>No Link</td>
               <% else %>
                 <td><%= link_to r.link, r.link %></td>
               <% end %>
-              <td><%= link_to "Edit", edit_resource_path(r) %></td>
+              <td><%= link_to "Edit", edit_resource_path(r, :competency_id => @competency_id), class: "waves-effect waves-light btn" %></td>
               <td>
                 <%= link_to "Delete", resource_path(r),
                     method: 'delete',
-                    data: {confirm: "Are you sure you want to permanently delete #{r.title}?"} %>
+                    data: {confirm: "Are you sure you want to permanently delete #{r.title}?"},
+                    class: "waves-effect waves-light red btn" %>
               </td>
             </tr>
           <% end %>
         </tbody>
       </table>
+      <br><br>
     <% end %>
+    </div>
+    <div class="divider"></div>
   <% end %>
 <% end %>

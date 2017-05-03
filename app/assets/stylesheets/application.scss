@@ -22,6 +22,7 @@ $cmu-dark-green: #243;
  *
  *= require_tree .
  *= require_self
+ *= require dataTables/jquery.dataTables
  */
 @import "materialize/components/color";
 $primary-color: $cmu-red !default;

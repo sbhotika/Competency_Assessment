@@ -1,13 +1,6 @@
 <%= form_for(@indicator) do |f| %>
   <% if @indicator.errors.any? %>
-    <div>
-      <strong><%= pluralize(@indicator.errors.count, "error") %> prohibited this indicator from being saved:</strong>
-      <ul>
-        <% @indicator.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render partial: "partials/errors", locals: {object: @indicator} %>
   <% end %>
 
   <div>
@@ -28,8 +21,10 @@
     <%= f.check_box :active %>
     <%= f.label :active, id:"active" %><br>
   </div>
-
+  <br>
   <div>
-    <%= f.submit %>
+    <button class="btn waves-effect waves-light" type="submit">Submit
+      <i class="material-icons right">send</i>
+    </button>
   </div>
 <% end %>

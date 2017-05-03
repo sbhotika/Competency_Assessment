@@ -1,0 +1,24 @@
+<%= form_for(@indicator_resource) do |f| %>
+  <% if @indicator_resource.errors.any? %>
+    <div>
+      <strong><%= pluralize(@indicator_resource.errors.count, "error") %> prohibited this Indicator Resource from being saved:</strong>
+      <ul>
+        <% @indicator_resource.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :Resource %>
+    <%= f.collection_select :resource_id, Resource.all, :id, :title, {:class => 'browser-default'} %>
+  </div>
+
+  <%= f.hidden_field :indicator_id, :value => @indicator.id %>
+
+  <div>
+    <%= f.submit :class => 'waves-effect waves-light btn red' %>
+  </div>
+
+<% end %>

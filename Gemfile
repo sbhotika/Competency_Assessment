@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -14,12 +15,16 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'materialize-sass'
 
+gem 'jquery-datatables-rails', '~> 3.4.0'
+
+gem 'will_paginate'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Commented out classic turbolinks gem in favor of the jquery-turbolinks because of compatability issues with Materialize.
-# Read more: https://github.com/mkhairi/materialize-sass 
+# Read more: https://github.com/mkhairi/materialize-sass
 gem 'jquery-turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -29,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Highcharts allows easy creation of simple charts
 gem 'highcharts-rails'
-# Lodash (built on top of underscore.js) is a great js library 
+# Lodash (built on top of underscore.js) is a great js library
 # that has tons of helper functions to manipulate objects, arrays, etc.
 gem 'lodash-rails'
 

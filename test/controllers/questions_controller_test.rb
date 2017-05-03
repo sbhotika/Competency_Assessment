@@ -4,6 +4,13 @@ class QuestionsControllerTest < ActionController::TestCase
   # Test all question controller actions and methods
   setup do
     create_questions
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    question_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = question_controller
   end
 
   # Test that the index page displays with proper variables assigned

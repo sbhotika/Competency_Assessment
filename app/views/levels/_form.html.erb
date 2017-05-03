@@ -1,13 +1,6 @@
 <%= form_for(@level) do |f| %>
   <% if @level.errors.any? %>
-    <div>
-      <strong><%= pluralize(@level.errors.count, "error") %> prohibited this level from being saved:</strong>
-      <ul>
-        <% @level.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render partial: "partials/errors", locals: {object: @level} %>
   <% end %>
 
   <div>
@@ -28,6 +21,10 @@
   </div>
 
   <div>
-    <%= f.submit %>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="material-icons right">send</i>
+    </button>
   </div>
 <% end %>
+<br>
+<%= link_to "Display All Levels", levels_path, class: "waves-effect waves-light btn" %>

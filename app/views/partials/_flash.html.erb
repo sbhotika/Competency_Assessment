@@ -1,3 +1,24 @@
 <% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: "#{name}" %>
+  <div id="alert-box" class="row">
+    <div class="col s12 m12">
+      <div class="<%= "card notice #{name}" %>">
+        <div class="row">
+          <div class="col s12 m10">
+            <div class="card-content white-text">
+              <% if iterable? msg %>
+                <% msg.each_with_index do |m, i| %>
+                  <p><%= "#{i+1}. #{m}"%></p>
+                <% end %>
+              <% else %>
+                <p><%= msg %></p>
+              <% end %>
+            </div>
+          </div>
+          <div class="col s12 m2">
+            <i id="alert-close" class="material-icons icon-style">close</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

@@ -9,39 +9,47 @@
 <div class="row">
   <div class="col s12 m4">
     <div class="icon-block">
-      <h2 class="center brown-text"><i class="material-icons">find_in_page</i></h2>
+      <h2 class="center brown-text"><i class="material-icons">remove_red_eye</i></h2>
       <h5 class="center secondary-color">Cognitive Skills</h5>
       <p class="light center">Cognitive Skills include your ability to think critically and analyze, see the significance of observations and events, anticipate future events, problem solve, and select the best course of action.</p>
     </div>
   </div>
   <div class="col s12 m4">
     <div class="icon-block">
-      <h2 class="center brown-text"><i class="material-icons">assessment</i></h2>
+      <h2 class="center brown-text"><i class="material-icons">directions_run</i></h2>
       <h5 class="center secondary-color">Psychomotor Skills</h5>
       <p class="light center">Psychomotor Skills include your ability to perform physical tasks, such as using muscle memory to complete routine tasks, and your ability to develop skills through on the job training.</p>
     </div>
   </div>
   <div class="col s12 m4">
     <div class="icon-block">
-      <h2 class="center brown-text"><i class="material-icons">show_chart</i></h2>
+      <h2 class="center brown-text"><i class="material-icons">people</i></h2>
       <h5 class="center secondary-color">Interpersonal Skills</h5>
       <p class="light center">Interpersonal Skills include your ability to work and interact with others, collaborate, and resolve conflict.</p>
     </div>
   </div>
 </div>
 
-<div class="row">
-  <ul class="collection with-header center">
-    <li class="collection-header"><h4 class="secondary-color">Our Foundational Competencies</h4></li>
-    <li class="collection-item">Communication</li>
-    <li class="collection-item">Creativity and Innovation</li>
-    <li class="collection-item">Decision Making</li>
-    <li class="collection-item">Intercultural Awareness</li>
-    <li class="collection-item">Managing Conflict</li>
-    <li class="collection-item">Priority Management</li>
-    <li class="collection-item">Problem Solving</li>
-    <li class="collection-item">Strategic Visioning</li>
-    <li class="collection-item">Utilizing Technology</li>
-    <li class="collection-item">Working with Others</li>
-  </ul>
+<div id="competencies" class="row">
+  <h4 class="secondary-color center">Our Foundational Competencies</h4>
+  <div class="carousel">
+    <% competencies = ["Communication", "Creativity and Innovation", "Decision Making", "Intercultural Awareness", 
+      "Managing Conflict", "Priority Management", "Problem Solving", "Strategic Visioning", "Utilizing Technology",
+      "Working with Others"] %>
+
+    <% competencies.each do |c| %>
+      <a class="carousel-item">
+        <div class="card">
+          <div class="card-image">
+            <%= image_tag "competency-backgrounds/#{c.downcase.gsub(" ", "-")}.jpg" %>
+          </div>
+          <div class="card-content">
+            <p class="white-text center">
+              <%= c %>
+            </p>
+          </div>
+        </div>
+      </a>
+    <% end %>
+  </div>
 </div>

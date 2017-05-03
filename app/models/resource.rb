@@ -1,5 +1,4 @@
 class Resource < ActiveRecord::Base
-
   # Callback Functions
   before_save :reformat_link
 
@@ -15,9 +14,11 @@ class Resource < ActiveRecord::Base
 
   # Scopes
   scope :alphabetical, -> { order("title") }
-  scope :active, -> { where('active = ?', true) }
-  scope :inactive, -> { where('active = ?', false) }
+  scope :active, -> { where('resources.active = ?', true) }
+  scope :inactive, -> { where('resources.active = ?', false) }
   scope :for_indicator, -> (indicator_id) {joins(:indicators).where("indicators.id = ?",indicator_id).group("title")}
+  scope :for_competency, -> (competency_id) {joins(:indicators => :competency).where("competencies.id = ?",competency_id).group("title")}
+  scope :for_paradigm, -> (paradigm_id) {joins(:paradigm).where("paradigms.id = ?", paradigm_id)}
 
   # Methods
   def self.parse(spreadsheet, paradigms)

@@ -1,3 +1,6 @@
 <%= render partial: "partials/index_structure", locals: {model_name: "indicator",
                                                          primary: "active_indicators",
                                                          secondary: "inactive_indicators"} %>
+
+<%= link_to "Add a New Indicator", new_indicator_path(:competency_id => @competency_id), class: "waves-effect waves-light btn-large"  %>
+<br><br>

@@ -19,7 +19,7 @@ class ImportsControllerTest < ActionController::TestCase
       post :parse, file: uploaded_file
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   # Test that uploading a xlsx file, parsing it properly, and saving to database works.
@@ -33,7 +33,7 @@ class ImportsControllerTest < ActionController::TestCase
       post :parse, file: uploaded_file
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   # Test that uploading an excel file with bad validation will throw error for independent models.
@@ -46,7 +46,7 @@ class ImportsControllerTest < ActionController::TestCase
       post :parse, file: uploaded_file
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   # Test that uploading an excel file with bad validation will throw error 
@@ -61,7 +61,7 @@ class ImportsControllerTest < ActionController::TestCase
       post :parse, file: uploaded_file
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   # Test that uploading an excel file with bad validation will throw error 
@@ -76,7 +76,7 @@ class ImportsControllerTest < ActionController::TestCase
       post :parse, file: uploaded_file
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   # Test that error should be thrown for missing or mispelled sheet name
@@ -89,7 +89,7 @@ class ImportsControllerTest < ActionController::TestCase
       post :parse, file: uploaded_file
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   # Test that error should be thrown for missing or mispelled column name
@@ -103,7 +103,7 @@ class ImportsControllerTest < ActionController::TestCase
       post :parse, file: uploaded_file
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
   # Test that error should be thrown for missing or mispelled sheet and column name
@@ -117,7 +117,7 @@ class ImportsControllerTest < ActionController::TestCase
       post :parse, file: uploaded_file
     end
 
-    assert_redirected_to root_path
+    assert_redirected_to dashboard_path
   end
 
 end

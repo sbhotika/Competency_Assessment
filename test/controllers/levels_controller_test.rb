@@ -4,6 +4,13 @@ class LevelsControllerTest < ActionController::TestCase
   # Test all level controller actions and methods
   setup do
     create_levels
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    level_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = level_controller
   end
 
   # Test that the index page displays with proper variables assigned
@@ -14,12 +21,6 @@ class LevelsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:inactive_levels)
   end
 
-  # Test that the show page displays with proper object assigned
-  test "should show level" do
-    get :show, id: @champion
-    assert_not_nil assigns(:level)
-    assert_response :success
-  end
 
   # Test that the new page displays
   test "should get new" do

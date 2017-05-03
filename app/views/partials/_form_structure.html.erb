@@ -4,20 +4,3 @@
 <%= render "form" %>
 
 <br>
-
-<%= link_to(eval("#{model_name.pluralize}_path")) do %>
-  Display All <%= model_name.pluralize.capitalize %>
-<% end %>
-
-<% if action == "edit" %>
-  <br>
-  <%= link_to(eval("#{model_name}_path(object)")) do %>
-    <%= "#{opt} Details" %>
-  <% end %>
-  <br>
-  <%= link_to(eval("#{model_name}_path(object)"), 
-    method: 'delete', 
-    data: {confirm: "Are you sure you want to permanently delete #{opt}?"}) do %>
-    <%= "Delete #{opt}" %>
-  <% end %>
-<% end %>

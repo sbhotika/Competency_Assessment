@@ -1,3 +1,8 @@
 <%= render partial: "partials/form_structure", locals: {model_name: "resource",
                                                         object: @resource,
                                                         action: "edit"} %>
+
+<a id="back-button" href="<%= resources_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+  Return to this competency's resources
+  <i class="material-icons left">navigate_before</i>
+</a>

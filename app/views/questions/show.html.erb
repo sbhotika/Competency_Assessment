@@ -1,3 +1,9 @@
-<%= render partial: "partials/show_structure", locals: {model_name: "question",
-                                                        object: @question,
-                                                        object_details: "question_details"} %>
+<br>
+<a href="<%= questions_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+  Return to this competency's questions
+  <i class="material-icons left">navigate_before</i>
+</a>
+
+<h2>Manage Question</h2>
+
+<%= render "question_details" %>

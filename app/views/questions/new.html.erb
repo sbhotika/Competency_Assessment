@@ -1,3 +1,8 @@
 <%= render partial: "partials/form_structure", locals: {model_name: "question",
                                                         object: nil,
                                                         action: "create"} %>
+
+<a href="<%= questions_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+  Return to this competency's questions
+  <i class="material-icons left">navigate_before</i>
+</a>

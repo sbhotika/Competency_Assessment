@@ -5,6 +5,13 @@ class ResourcesControllerTest < ActionController::TestCase
   setup do
     create_paradigms
     create_resources
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    resource_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = resource_controller
   end
 
   # Test that the index page displays with proper variables assigned

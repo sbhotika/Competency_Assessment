@@ -2,7 +2,7 @@
 <% if @active_paradigms.empty? %>
   <p><em>There are no active paradigms at this time.</em></p>
 <% else %>
-    <table border="1">
+  <table id="" class="display striped" border="1">
       <thead>
         <tr>
           <th>Name</th>
@@ -15,14 +15,15 @@
       <tbody>
         <% @active_paradigms.each do |p| %>
           <tr>
-            <td><%= link_to p.name, paradigm_path(p) %></td>
+            <td><%= p.name%></td>
             <td><%= p.description %></td>
             <td><%= p.ranking %></td>
-            <td><%= link_to "Edit", edit_paradigm_path(p) %></td>
+            <td><%= link_to "Edit", edit_paradigm_path(p), class: "waves-effect waves-light btn" %></td>
             <td>
               <%= link_to "Delete", paradigm_path(p),
                   method: 'delete',
-                  data: {confirm: "Are you sure you want to permanently delete #{p.name}?"} %>
+                  data: {confirm: "Are you sure you want to permanently delete #{p.name}?"},
+                  class: "waves-effect waves-light btn red" %>
             </td>
           </tr>
         <% end %>

@@ -1,13 +1,6 @@
 <%= form_for(@competency) do |f| %>
   <% if @competency.errors.any? %>
-    <div>
-      <strong><%= pluralize(@competency.errors.count, "error") %> prohibited this competency from being saved:</strong>
-      <ul>
-        <% @competency.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render partial: "partials/errors", locals: {object: @competency} %>
   <% end %>
 
   <div>

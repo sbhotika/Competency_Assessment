@@ -1,13 +1,6 @@
 <%= form_for(@resource) do |f| %>
   <% if @resource.errors.any? %>
-    <div>
-      <strong><%= pluralize(@resource.errors.count, "error") %> prohibited this resource from being saved:</strong>
-      <ul>
-        <% @resource.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render partial: "partials/errors", locals: {object: @resource} %>
   <% end %>
 
   <div>
@@ -29,6 +22,8 @@
   </div>
 
   <div>
-    <%= f.submit %>
+    <button class="btn waves-effect waves-light" type="submit">Submit
+      <i class="material-icons right">send</i>
+    </button>
   </div>
 <% end %>

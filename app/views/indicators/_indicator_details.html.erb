@@ -1,17 +1,52 @@
-<p>
-  <strong>Description:</strong> <%= @indicator.description %>
-</p>
+<div class="col s12 m6">
+  <div class="card blue-grey darken-1">
+    <div class="card-content white-text">
+      <span class="card-title">Indicator Details</span>
+      <p><%= @indicator.description %></p>
+      <br>
+      <p>Competency: <%= @indicator.competency.name %></p>
+      <p>Level: <%= @indicator.level.name %></p>
+      <p>This indicator is <%= @indicator.active ? "active" : "inactive" %>.</p>
+    </div>
+    <div class="card-action">
 
-<p>
-  <strong>Competency:</strong> 
-  <%= link_to @indicator.competency.name, competency_path(@indicator.competency) %>
-</p>
-
-<p>
-  <strong>Level:</strong> 
-  <%= link_to @indicator.level.name, level_path(@indicator.level) %>
-</p>
-
-<p>
-  <strong>Active:</strong> <%= @indicator.active ? "Yes" : "No" %>
-</p>
+        <%= link_to "Edit", edit_indicator_path(@indicator), class: "waves-effect waves-light btn" %>
+        <%= link_to "Delete", indicator_path(@indicator),
+            method: 'delete',
+            data: {confirm: "Are you sure you want to permanently delete #{@indicator.description}?"},
+            class: "waves-effect waves-light btn red" %>
+    </div>
+  </div>
+</div>
+<br>
+<h2>Manage Indicator Resource Mappings</h2>
+<% if @indicator.indicator_resources.empty? %>
+  <p><em>There are no Indicator Resource mappings for this indicator.</em></p>
+<% else %>
+    <table id="" class="display striped responsive-table">
+      <thead>
+        <tr>
+          <th>Resource</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @indicator.indicator_resources.each do |ir| %>
+          <tr>
+            <td><%= link_to ir.resource.title, resource_path(ir.resource) %></td>
+            <td>
+              <%= link_to "Delete", indicator_resource_path(ir),
+                  method: 'delete',
+                  data: {confirm: "Are you sure you want to permanently delete this mapping?"},
+                  class: "waves-effect waves-light btn red" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+<br>
+<div= "container">
+  <%= link_to "Create Indicator Resource Mapping", new_indicator_resource_path(:indicator => @indicator), class: "waves-effect waves-light btn-large" %>
+</div>
+<br><br>

@@ -6,13 +6,20 @@ class IndicatorsControllerTest < ActionController::TestCase
     create_competencies
     create_levels
     create_indicators
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    indicator_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = indicator_controller
   end
 
   # Test that the index page displays with proper variables assigned
   test "should get index" do
-    get :index
+    get :index, :competency_id => 1
     assert_response :success
-    assert_not_nil assigns(:competencies)
+    assert_not_nil assigns(:competency)
   end
 
   # Test that the show page displays with proper object assigned

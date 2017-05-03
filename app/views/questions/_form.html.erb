@@ -1,13 +1,6 @@
 <%= form_for(@question) do |f| %>
   <% if @question.errors.any? %>
-    <div>
-      <strong><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</strong>
-      <ul>
-        <% @question.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+    <%= render partial: "partials/errors", locals: {object: @question} %>
   <% end %>
 
   <div>
@@ -18,8 +11,10 @@
     <%= f.check_box :active %>
     <%= f.label :active, id:"active" %><br>
   </div>
-
+  <br>
   <div>
-    <%= f.submit %>
+    <button class="btn waves-effect waves-light" type="submit">Submit
+      <i class="material-icons right">send</i>
+    </button>
   </div>
 <% end %>

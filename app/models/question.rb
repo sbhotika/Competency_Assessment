@@ -7,8 +7,8 @@ class Question < ActiveRecord::Base
   validates_presence_of :question
 
   # Scopes
-  scope :active, -> { where("active = ?", true) }
-  scope :inactive, -> { where("active = ?",false) }
+  scope :active, -> { where("questions.active = ?", true) }
+  scope :inactive, -> { where("questions.active = ?",false) }
   scope :alphabetical, -> { order("question") }
   scope :for_indicator, -> (indicator_id) {joins(:indicators).where("indicators.id = ?",indicator_id).group("question")}
   scope :for_competency, -> (competency_id) {

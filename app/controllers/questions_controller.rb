@@ -2,21 +2,27 @@ class QuestionsController < ApplicationController
   layout "admin"
   # Callback Methods
   before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
 
   # GET /questions
   def index
-    @active_questions = Question.active.alphabetical
-    @inactive_questions = Question.inactive.alphabetical
+    # Get questions related to the competency
+    @active_questions = Question.active.for_competency(params[:competency_id])
+    @inactive_questions = Question.inactive.for_competency(params[:competency_id])
+    @competency_id = params[:competency_id]
+    @competency = Competency.find(params[:competency_id])
   end
 
   # GET /questions/:id
   def show
     @indicator_questions = @question.indicator_questions
+    @competency_id = params[:competency_id]
   end
 
   # GET /questions/new
   def new
     @question = Question.new
+    @competency_id = params[:competency_id]
   end
 
   # POST /questions
@@ -32,6 +38,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/:id/edit
   def edit
+    @competency_id = params[:competency_id]
   end
 
   # PATCH/PUT /questions/:id

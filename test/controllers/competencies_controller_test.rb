@@ -4,6 +4,13 @@ class CompetenciesControllerTest < ActionController::TestCase
   # Test all competency controller actions and methods
   setup do
     create_competencies
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    competency_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = competency_controller
   end
 
   # Test that the index page displays with proper variables assigned

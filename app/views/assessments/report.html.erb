@@ -5,8 +5,43 @@
 
 <div id="levels-chart"></div>
 
+<h3 class="report-subheading center">Our Levels</h3>
+<div id="level-descriptions" class="row">
+  <% @levels.each do |level| %>
+    <div class="col s12 m4">
+      <div class="card" data-level="<%= level.name %>">
+        <div class="card-content white-text">
+          <span class="card-title"><%= level.name %></span>
+          <p><%= level.description.html_safe %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h3 class="report-subheading center">Our Paradigm</h3>
+<div id="paradigm-descriptions" class="row">
+  <% @paradigms.each do |paradigm| %>
+    <div class="col s12 m4">
+      <div class="card secondary-color-background">
+        <div class="card-content white-text">
+          <span class="card-title"><%= paradigm.name %></span>
+          <p><%= paradigm.description.html_safe %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<h3 class="report-subheading center">Your Development Plan and Resources</h3>
+<% stage_descriptions = {
+    "developed" => "You consistently demonstrate these abilities and behaviors.  Your goal is to maintain and maximize.",
+    "developing" => "You demonstrate these abilities and behaviors on an inconsistent basis.  Your goal is to build consistency and continuity.",
+    "emerging" => "These abilities and behaviors are yet to be developed.  Your goal is to familiarize and practice."} %>
+
 <% @indicators_resources.each do |stage, indicators| %>
-  <h3 class="secondary-color"><%= stage.capitalize %></h3>
+  <h4 class="secondary-color"><%= stage.capitalize %></h4>
+  <p class="stage-description"><%= stage_descriptions[stage] %></p>
 
   <% if indicators.empty? %>
     <p><em>There are no indicators for this stage at this time.</em></p>
@@ -31,7 +66,7 @@
                     <div>
                       <%= resource.title.html_safe %>
                       <% if resource.link.present? %>
-                        <a href="<%= resource.link %>" class="secondary-content">
+                        <a href="<%= resource.link %>" class="secondary-content" target="_blank">
                           <i class="material-icons">send</i>
                         </a>
                       <% end %>
@@ -48,6 +83,8 @@
 <% end %>
 
 <script type="text/javascript">
+  standardizeCardSize("#paradigm-descriptions");
+  standardizeCardSize("#level-descriptions");
   var indicators_resources = 
     <%= raw @indicators_resources.to_json(
           include: [

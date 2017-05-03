@@ -1,0 +1,24 @@
+<%= form_for(@indicator_question) do |f| %>
+  <% if @indicator_question.errors.any? %>
+    <div>
+      <strong><%= pluralize(@indicator_question.errors.count, "error") %> prohibited this Indicator Question from being saved:</strong>
+      <ul>
+        <% @indicator_question.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :Indicators %>
+    <%= f.collection_select :indicator_id, Indicator.excluding_question(@question.id), :id, :description, {:class => 'browser-default'} %>
+  </div>
+
+  <%= f.hidden_field :question_id, :value => @question.id %>
+
+  <div>
+    <%= f.submit :class => 'waves-effect waves-light btn red' %>
+  </div>
+
+<% end %>

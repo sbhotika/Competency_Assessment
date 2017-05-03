@@ -4,6 +4,13 @@ class ParadigmsControllerTest < ActionController::TestCase
   # Test all paradigm controller actions and methods
   setup do
     create_paradigms
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    paradigm_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = paradigm_controller
   end
 
   # Test that the index page displays with proper variables assigned
@@ -12,13 +19,6 @@ class ParadigmsControllerTest < ActionController::TestCase
     assert_response :success
     assert_not_nil assigns(:active_paradigms)
     assert_not_nil assigns(:inactive_paradigms)
-  end
-
-  # Test that the show page displays with proper object assigned
-  test "should show paradigm" do
-    get :show, id: @build_understanding
-    assert_not_nil assigns(:paradigm)
-    assert_response :success
   end
 
   # Test that the new page displays

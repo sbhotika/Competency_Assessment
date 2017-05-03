@@ -1,3 +1,8 @@
 <%= render partial: "partials/index_structure", locals: {model_name: "resource",
                                                          primary: "active_resources",
                                                          secondary: "inactive_resources"} %>
+<a id="add-new" href="<%= new_resource_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+  Add a New Resource
+  <i class="material-icons right">library_add</i>
+</a>
+<br><br>

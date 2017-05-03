@@ -56,6 +56,14 @@ class ResourceTest < ActiveSupport::TestCase
       assert_equal true, @comm_dumm.indicator_resources.first.nil?
     end
 
+    should "list resources for a competency" do
+      assert_equal ["Communication Skills for Dummies","Public Speaking 101 Workshop"],Resource.for_competency(1).alphabetical.map { |e| e.title }
+    end
+
+    should "list resources for a paradigm" do
+      assert_equal [@comm_dumm],Resource.for_paradigm(1).map {|e| e}
+    end
+
   end
 
 end

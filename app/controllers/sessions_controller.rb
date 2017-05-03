@@ -1,6 +1,9 @@
 class SessionsController < ApplicationController
   # GET /login
   def new
+    if (current_user)
+      redirect_to dashboard_path
+    end
   end
 
   # POST /login
@@ -11,9 +14,9 @@ class SessionsController < ApplicationController
       # Save the user id
       session[:user_id] = user.id
       flash[:notice] = "Login Successful"
-      redirect_to root_path
+      redirect_to dashboard_path
     else
-      flash[:error] = "Login Failed"
+      flash[:error] = "Username or Password is incorrect."
       redirect_to login_path
     end
   end

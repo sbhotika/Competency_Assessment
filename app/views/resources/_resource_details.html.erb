@@ -1,21 +1,65 @@
-<p>
-  <strong>Title:</strong> <%= @resource.title.html_safe %>
-</p>
+<div class="col s12 m6">
+  <div class="card blue-grey darken-1">
+    <div class="card-content white-text">
+      <span class="card-title">Resource Details</span>
+      <p><%= @resource.title.html_safe %></p>
+      <br>
+      <p>
+        <strong>Link:</strong>
+        <% if !@resource.link.present? %>
+          No Link
+        <% else %>
+          <%= link_to @resource.link, @resource.link %>
+        <% end %>
+      </p>
+      <br>
+      <p>
+        <strong>Paradigm:</strong>
+        <%= link_to @resource.paradigm.name, paradigm_path(@resource.paradigm) %>
+      </p>
+      <br>
+      <p>This resource is <%= @resource.active ? "active" : "inactive" %>.</p>
+    </div>
+    <div class="card-action">
 
-<p>
-  <strong>Link:</strong> 
-  <% if !@resource.link.present? %>
-    No Link
-  <% else %>
-    <%= link_to @resource.link, @resource.link %>
-  <% end %>
-</p>
-
-<p>
-  <strong>Paradigm:</strong>
-  <%= link_to @resource.paradigm.name, paradigm_path(@resource.paradigm) %>
-</p>
-
-<p>
-  <strong>Active:</strong> <%= @resource.active ? "Yes" : "No" %>
-</p>
+        <%= link_to "Edit", edit_resource_path(@resource, :competency_id => @competency_id), class: "waves-effect waves-light btn" %>
+        <%= link_to "Delete", resource_path(@resource),
+            method: 'delete',
+            data: {confirm: "Are you sure you want to permanently delete #{@resource.title}?"},
+            class: "waves-effect waves-light btn red" %>
+    </div>
+  </div>
+</div>
+<br>
+<h2>View Indicator Resource Mappings</h2>
+<% if @resource.indicator_resources.empty? %>
+  <p><em>There are no Indicator resource mappings for this resource.</em></p>
+<% else %>
+    <table id="" class="display striped responsive-table">
+      <thead>
+        <tr>
+          <th>Indicator</th>
+          <th>&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @resource.indicator_resources.each do |iq| %>
+          <tr>
+            <td><%= link_to iq.indicator.description, indicator_path(iq.indicator) %></td>
+            <td>
+              <%= link_to "Manage", indicator_path(iq.indicator),
+                  class: "waves-effect waves-light btn" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+<br><br>
+<div class="divider"></div>
+<br><br>
+<a id="back-button" href="<%= resources_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+  Return to this competency's resources
+  <i class="material-icons left">navigate_before</i>
+</a>
+<br><br>

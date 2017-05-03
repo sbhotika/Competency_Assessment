@@ -60,6 +60,7 @@ class AssessmentsController < ApplicationController
   def report
     @developing_stages = params[:developing_stages]
     @levels = Level.all.by_ranking
+    @paradigms = Paradigm.all.by_ranking
 
     # Create a new hash with the appropriate indicators 
     # (based on the question id's) in the corresponding stage
@@ -87,6 +88,10 @@ class AssessmentsController < ApplicationController
       # and place in the proper stage in the @indicators_resources hash
       @indicators_resources[stage] = 
         current_stage.to_a.sort {|a,b| a.level.ranking <=> b.level.ranking}
+    end
+
+    if params[:printable] == "true"
+      return render 'printable_report'
     end
   end
 

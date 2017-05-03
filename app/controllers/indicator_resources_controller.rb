@@ -1,7 +1,8 @@
 class IndicatorResourcesController < ApplicationController
-
+  layout "admin"
   # Callback Methods
   before_action :set_indicator_resource, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
 
   def index
   end
@@ -11,6 +12,7 @@ class IndicatorResourcesController < ApplicationController
 
   def new
     @indicator_resource = IndicatorResource.new
+    @indicator = Indicator.find_by(params[:indicator])
   end
 
   def create
@@ -34,7 +36,7 @@ class IndicatorResourcesController < ApplicationController
   end
 
   def destroy
-    @indicator = @indicator_resource
+    @indicator = @indicator_resource.indicator
     @indicator_resource.destroy
     flash[:notice] = "Successfully deleted Indicator Resource mapping"
     redirect_to indicator_path(@indicator)

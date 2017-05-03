@@ -1,3 +1,8 @@
 <%= render partial: "partials/form_structure", locals: {model_name: "indicator",
                                                         object: @indicator,
                                                         action: "edit"} %>
+
+<a href="<%= indicators_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+  Return to this competency's indicators
+  <i class="material-icons left">navigate_before</i>
+</a>

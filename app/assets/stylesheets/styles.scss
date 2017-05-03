@@ -3,7 +3,7 @@
  * General CSS
  * ============================================================================
  */
-
+@import "materialize";
 
 * {
   font-family: 'Open Sans', Helvetica, sans-serif;
@@ -22,6 +22,10 @@ body {
 
 h1, h2 {
   color: $cmu-dark-red;
+}
+
+strong {
+  font-weight: 600;
 }
 
 footer {
@@ -64,7 +68,7 @@ footer {
   top: auto !important;
   right: 7%;
   bottom: 10%;
-  left: auto !important;  
+  left: auto !important;
 }
 
 .navbar-fixed {
@@ -73,6 +77,35 @@ footer {
 
 h3, h4, h5, h6 {
   color: $cmu-green;
+}
+
+
+/* Flash Message */
+
+.icon-style {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  color: white;
+  cursor:pointer;
+}
+
+#alert-box {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+
+.notice {
+  background-color: $cmu-blue;
+}
+
+.success {
+  background-color: $cmu-green;
+}
+
+.error {
+  background-color: $cmu-red;
 }
 
 
@@ -113,6 +146,9 @@ nav .admin-nav-content {
   background-color: $cmu-teal;
 }
 
+#admin-nav {
+  background-color: $cmu-teal;
+}
 
 /* Home Page */
 
@@ -122,7 +158,7 @@ nav .admin-nav-content {
 
 .header {
   font-weight: 600;
-} 
+}
 
 .parallax-container {
   height: 450px;
@@ -150,6 +186,25 @@ nav .admin-nav-content {
 
 #about .tabs {
   overflow-x: hidden;
+}
+
+#about #competencies .card-content {
+  background-color: $cmu-dark-gray;
+  padding: 15px;
+}
+
+#about #competencies .card-content p {
+  font-size: 22px;
+  max-width: 100%;
+}
+
+#about #competencies .carousel {
+  height: 450px;
+}
+
+#about #competencies .carousel .carousel-item {
+  width: 400px !important;
+  top: -100px;
 }
 
 /*
@@ -192,7 +247,7 @@ nav .admin-nav-content {
     background-color: $cmu-teal;
     text-align: center;
     line-height: 30px;
-    color: white; 
+    color: white;
     transition: all 0.5s ease;
 }
 
@@ -228,6 +283,53 @@ nav .admin-nav-content {
   padding: 0px 10px !important;
 }
 
+#levels-chart {
+  margin-top: 30px;
+}
+
+.stage-description {
+  color: $cmu-green;
+  font-size: 20px;
+}
+
+.report-subheading {
+  color: $cmu-dark-red;
+}
+
+
+/* Printable Assessment Report */
+
+@media print {
+  #printable-report .page-break {
+    display: block;
+    page-break-before: always;
+  }
+
+  header {
+    display: none;
+  }
+
+  #printable-report .card span, #printable-report .card p {
+    color: black !important;
+  }
+
+  #printable-report .collection-item {
+    border-style: none !important;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+  #printable-report .collapsible-header {
+    line-height: 1.3rem !important;
+    font-size: 19px !important;
+  }
+
+  #printable-report .printable {
+    display: none;
+  }
+
+}
+
 /*
  * ============================================================================
  * Admin Dashboard
@@ -244,4 +346,27 @@ nav .admin-nav-content {
 
  #dash-cards .card-image{
    max-width: 30%;
+ }
+
+ .dataTables_paginate {
+   float: right
+ }
+
+ .paginate_button {
+
+   padding: 5px;
+ }
+
+ .paginate_button:hover {
+   border: 1px solid;
+   border-color: #cacaca;
+   background: $cmu-red;
+   color: white;
+  }
+
+ .paginate_button.current {
+   border: 1px solid;
+   border-color: #cacaca;
+   background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
+   color: black;
  }

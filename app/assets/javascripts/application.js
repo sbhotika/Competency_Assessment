@@ -19,3 +19,4 @@
 //= require highcharts
 //= require highcharts/highcharts-more
 //= require_scripts
+//= require dataTables/jquery.dataTables

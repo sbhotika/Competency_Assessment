@@ -4,6 +4,8 @@
  * ============================================================================
  */
 
+var tab_load_count = 0;
+// Contains all set up functions, mainly for materialize
 (function($){
   $(function(){
 
@@ -15,15 +17,52 @@
       scrollOffset: 100
     });
     $(".modal").modal();
-    
+    $("ul.tabs").tabs({
+      onShow: function(tab) {
+        if(tab_load_count == 0) {
+          $(".carousel").carousel();
+          tab_load_count++;
+        }
+      }
+    });
   }); // end of document ready
 })(jQuery); // end of jQuery name space
 
-
+// Autogenerate the copyright text
 $(function(){
   var year = new Date().getFullYear();
   var copyright = "© " + year + " Carnegie Mellon University";
   $("footer #copyright").html(copyright);
+});
+
+// Set up event listeners for the flash and error messages
+$(function(){
+  $("#alert-close").click(function(){
+    $( "#alert-box" ).fadeOut( "slow", function() {
+    });
+  });
+});
+
+// Used to make sure that all cards are of the same height
+function standardizeCardSize(element) {
+  var maxHeight = -1;
+  $(element + " .card").each(function() {
+    maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
+  });
+
+  $(element + " .card").each(function() {
+    $(this).height(maxHeight);
+  });
+}
+
+/*
+ * ============================================================================
+ * Collection_select Code
+ * ============================================================================
+ */
+
+$(document).ready(function() {
+ $('select').material_select();
 });
 
 
@@ -67,7 +106,6 @@ function initColors(levels) {
 // Create chart that displays indicators by stage by level.
 function createLevelsChart(indicators_resources, levels, competency) {
   var id = "levels-chart";
-  var title = competency.name + " Assessment Result";
   // The categories are the list of capitalized stages
   // ex) [Developed, Developing, Emerging]
   var categories = _.keys(indicators_resources).map(function(stage){
@@ -94,7 +132,7 @@ function createLevelsChart(indicators_resources, levels, competency) {
     }
   });
 
-  createChart(id, "column", title, "Stages", "Indicators", categories, data);
+  createChart(id, "column", "", "Stages", "Indicators", categories, data);
 }
 
 // Creates a generic chart with specified type and other fields
@@ -162,6 +200,13 @@ function setLevelColor() {
     var level = icon.data("level");
     icon.css("color", level_colors[level]);
   }
+
+  var descriptions = $("#level-descriptions .card");
+  for(var i = 0; i < descriptions.length; i++) {
+    var descript = $(descriptions[i]);
+    var level = descript.data("level");
+    descript.css("background-color", level_colors[level]);
+  }
 }
 
 /*
@@ -170,17 +215,6 @@ function setLevelColor() {
  * ============================================================================
  */
 
-// Used to make sure that all cards are of the same height
-function standardizeCardSize() {
-  var maxHeight = -1;
-  $('.card').each(function() {
-    maxHeight = maxHeight > $(this).height() ? maxHeight : $(this).height();
-  });
-
-  $('.card').each(function() {
-    $(this).height(maxHeight);
-  });
-} 
 
 // Global variables for the assessment
 var question_number = 0;
@@ -225,7 +259,6 @@ function updateAssessment() {
 
 // Updates the the buttons (next, previous, finish) based on question number
 function buttonUpdate() {
-  removeError();
   if(question_number == num_questions - 1) {
     $("#assessment-submit").show();
     $("#assessment-prev").prop('disabled', false);
@@ -247,7 +280,7 @@ function updateProgress() {
   var current_question_number = question_number + 1;
   var percentage = (current_question_number / num_questions) * 100;
   elem.style.width = percentage + "%";
-  elem.innerHTML = current_question_number + " of " + num_questions; 
+  elem.innerHTML = current_question_number + " of " + num_questions;
 }
 
 // Called before submitting the assessment and
@@ -264,14 +297,7 @@ function validAssessment() {
 
 // Helper function to display the assessment error
 function displayError(msg) {
-  // $("#assessment-errors").show();
-  // $("#assessment-errors").html(msg);
-  Materialize.toast(msg, 4000, "primary-color-background bottom");
-}
-
-// Helper function for removing the assessment error
-function removeError() {
-  $("#assessment-errors").hide();
+  Materialize.toast(msg, 4000, "error bottom");
 }
 
 // Function that checks if a question is answered or not
@@ -284,3 +310,13 @@ function hasCheckedRadio(q_num) {
 function iAgree(){
   $("#disclaimer-submit")[0].disabled = !$("#accept")[0].checked;
 }
+
+/*
+ * ============================================================================
+ * Datatables Code
+ * ============================================================================
+ */
+
+ $(document).ready(function() {
+     $('table.display').dataTable({"sPaginationType": "full_numbers", "iDisplayLength" : 10, ordering: true});
+ });

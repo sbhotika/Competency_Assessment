@@ -10,6 +10,13 @@ class IndicatorResourcesControllerTest < ActionController::TestCase
     create_paradigms
     create_resources
     create_indicator_resources
+    create_users
+    # Stub the session creation so the controller methods can be accessed
+    # from behind the authentication
+    ir_controller = @controller
+    @controller = SessionsController.new
+    post :create, {username:"admin", password:"password"}
+    @controller = ir_controller
   end
 
   # Test that create action creates a valid object

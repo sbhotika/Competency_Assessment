@@ -1,3 +1,9 @@
 <%= render partial: "partials/index_structure", locals: {model_name: "paradigm",
                                                          primary: "active_paradigms",
                                                          secondary: "inactive_paradigms"} %>
+
+<a id="add-new" href="<%= new_paradigm_path %>" class="btn-large waves-effect waves-light">
+Add a New Paradigm
+<i class="material-icons right">library_add</i>
+</a>
+<br><br>

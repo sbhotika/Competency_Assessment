@@ -13,8 +13,9 @@
   </div>
   <br>
   <div>
-    <button class="btn waves-effect waves-light" type="submit">Submit
-      <i class="material-icons right">send</i>
-    </button>
+    <%= button_to "Submit", class: "btn waves-effect waves-light", name: "competency_id", value: @competency_id do %>
+      Submit <i class="material-icons right">send</i>
+    <% end %>
   </div>
+
 <% end %>

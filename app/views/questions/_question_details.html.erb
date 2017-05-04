@@ -8,8 +8,8 @@
     </div>
     <div class="card-action">
 
-        <%= link_to "Edit", edit_question_path(@question), class: "waves-effect waves-light btn" %>
-        <%= link_to "Delete", question_path(@question),
+        <%= link_to "Edit", edit_question_path(@question, :competency_id => @competency_id), class: "waves-effect waves-light btn" %>
+        <%= link_to "Delete", question_path(@question, :competency_id => @competency_id),
             method: 'delete',
             data: {confirm: "Are you sure you want to permanently delete #{@question.question}?"},
             class: "waves-effect waves-light btn red" %>

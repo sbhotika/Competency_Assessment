@@ -56,8 +56,9 @@ class QuestionsController < ApplicationController
   # DELETE /questions/:id
   def destroy
     @question.destroy
+    @competency_id = params[:competency_id]
     flash[:notice] = "Successfully deleted #{@question.question}"
-    redirect_to questions_path
+    redirect_to questions_path(:competency_id => @competency_id)
   end
 
 

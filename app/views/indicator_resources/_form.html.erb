@@ -18,7 +18,10 @@
   <%= f.hidden_field :indicator_id, :value => @indicator.id %>
 
   <div>
-    <%= f.submit :class => 'waves-effect waves-light btn red' %>
+    <%= button_to "Submit", class: "waves-effect waves-light btn red", name: "competency_id", value: @competency_id do %>
+      Submit <i class="material-icons right">send</i>
+    <% end %>
   </div>
+
 
 <% end %>

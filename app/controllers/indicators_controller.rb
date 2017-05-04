@@ -5,7 +5,7 @@ class IndicatorsController < ApplicationController
   before_action :set_indicator, only: [:show, :edit, :update, :destroy]
   before_action :set_competencies_levels, only: [:new, :create, :edit, :update]
   before_action :check_login
-  
+
   # GET /indicators
   def index
     @competency_id = params[:competency_id]
@@ -29,11 +29,12 @@ class IndicatorsController < ApplicationController
   # POST /indicators
   def create
     @indicator = Indicator.new(indicator_params)
+    @competency_id = params[:competency_id]
     if @indicator.save
       flash[:notice] = "Successfully created #{@indicator.description}"
-      redirect_to indicator_path(@indicator)
+      redirect_to indicator_path(@indicator, :competency_id => @competency_id)
     else
-      render "new"
+      redirect_to new_indicator_path(:competency_id => @competency_id)
     end
   end
 
@@ -44,19 +45,21 @@ class IndicatorsController < ApplicationController
 
   # PATCH/PUT /indicators/:id
   def update
+    @competency_id = params[:competency_id]
     if @indicator.update(indicator_params)
       flash[:notice] = "Successfully updated #{@indicator.description}"
-      redirect_to indicator_path(@indicator)
+      redirect_to indicator_path(@indicator, :competency_id => @competency_id)
     else
-      render "edit"
+      redirect_to edit_indicator_path(:competency_id => @competency_id)
     end
   end
 
   # DELETE /indicators/:id
   def destroy
     @indicator.destroy
+    @competency_id = params[:competency_id]
     flash[:notice] = "Successfully deleted #{@indicator.description}"
-    redirect_to indicators_path
+    redirect_to indicators_path(:competency_id => @competency_id)
   end
 
 

@@ -45,7 +45,7 @@
       <tbody>
         <% @resource.indicator_resources.each do |iq| %>
           <tr>
-            <td><%= link_to iq.indicator.description, indicator_path(iq.indicator) %></td>
+            <td><%= link_to iq.indicator.description, indicator_path(iq.indicator, :competency_id => @competency_id) %></td>
             <td>
               <%= link_to "Manage", indicator_path(iq.indicator),
                   class: "waves-effect waves-light btn" %>

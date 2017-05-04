@@ -24,6 +24,7 @@ class IndicatorsController < ApplicationController
   def new
     @indicator = Indicator.new
     @competency_id = params[:competency_id]
+    @competency = Competency.find(params[:competency_id])
   end
 
   # POST /indicators

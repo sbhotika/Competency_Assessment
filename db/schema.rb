@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326183521) do
+ActiveRecord::Schema.define(version: 20170506192800) do
 
   create_table "competencies", force: :cascade do |t|
     t.string   "name"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170326183521) do
 
   create_table "resources", force: :cascade do |t|
     t.integer  "paradigm_id"
-    t.string   "title"
+    t.text     "title"
     t.text     "link"
     t.boolean  "active",      default: true
     t.datetime "created_at",                 null: false

@@ -68,6 +68,7 @@ end
 group :development do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'mysql2', '~> 0.4.5'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -89,5 +90,5 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
+  gem 'mysql2', '~> 0.4.5'
 end

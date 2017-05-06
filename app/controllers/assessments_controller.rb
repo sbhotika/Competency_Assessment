@@ -37,9 +37,9 @@ class AssessmentsController < ApplicationController
     @developing_stages[:developed] = Array.new
     @developing_stages[:developing] = Array.new
     @developing_stages[:emerging] = Array.new
-    @developing_stages[:does_not_apply] = Array.new
 
     # Goes through each answer and place the respective question in the appropriate stage
+    # For now we will ignore the does not apply category
     questions.each do |qid, answer_hash|
       answer = answer_hash[:answer]
       if DEVELOPED_ANSWERS.include? answer
@@ -48,8 +48,6 @@ class AssessmentsController < ApplicationController
           @developing_stages[:developing] << qid
       elsif EMERGINg_ANSWERS.include? answer
           @developing_stages[:emerging] << qid
-      else
-          @developing_stages[:does_not_apply] << qid
       end
     end
 

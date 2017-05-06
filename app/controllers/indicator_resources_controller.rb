@@ -13,18 +13,20 @@ class IndicatorResourcesController < ApplicationController
   def new
     @indicator_resource = IndicatorResource.new
     @indicator = Indicator.find_by(params[:indicator])
+    @competency_id = params[:competency_id]
   end
 
   def create
+    @competency_id = params[:competency_id]
     @indicator_resource = IndicatorResource.new(indicator_resource_params)
     @indicator = @indicator_resource.indicator
     if @indicator_resource.save
       flash[:notice] = "Successfully created Indicator Resource mapping"
       # This assumes we add/delete IndicatorResources in the show indicator page
-      redirect_to indicator_path(@indicator)
+      redirect_to indicator_path(@indicator, :competency_id => @competency_id)
     else
       flash[:error] = "IndicatorResource failed to save."
-      redirect_to indicator_path(@indicator)
+      redirect_to indicator_path(@indicator, :competency_id => @competency_id)
     end
   end
 
@@ -36,10 +38,11 @@ class IndicatorResourcesController < ApplicationController
   end
 
   def destroy
+    @competency_id = params[:competency_id]
     @indicator = @indicator_resource.indicator
     @indicator_resource.destroy
     flash[:notice] = "Successfully deleted Indicator Resource mapping"
-    redirect_to indicator_path(@indicator)
+    redirect_to indicator_path(@indicator, :competency_id => @competency_id)
   end
 
   #----------------------------------

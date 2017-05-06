@@ -9,7 +9,7 @@
         <% if !@resource.link.present? %>
           No Link
         <% else %>
-          <%= link_to @resource.link, @resource.link %>
+          <%= link_to @resource.link, @resource.link, target: :_blank%>
         <% end %>
       </p>
       <br>

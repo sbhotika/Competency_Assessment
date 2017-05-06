@@ -30,7 +30,7 @@
                 <% if !r.link.present? %>
                   <td>No Link</td>
                 <% else %>
-                  <td><%= link_to r.link, r.link %></td>
+                  <td><%= link_to r.link, r.link, target: :_blank %></td>
                 <% end %>
                 <td><%= link_to "Edit", edit_resource_path(r, :competency_id => @competency_id), class: "waves-effect waves-light btn" %></td>
                 <td>

@@ -23,7 +23,7 @@
     <div class="card-action">
 
         <%= link_to "Edit", edit_resource_path(@resource, :competency_id => @competency_id), class: "waves-effect waves-light btn" %>
-        <%= link_to "Delete", resource_path(@resource),
+        <%= link_to "Delete", resource_path(@resource, :competency_id => @competency_id),
             method: 'delete',
             data: {confirm: "Are you sure you want to permanently delete #{@resource.title}?"},
             class: "waves-effect waves-light btn red" %>
@@ -43,11 +43,11 @@
         </tr>
       </thead>
       <tbody>
-        <% @resource.indicator_resources.each do |iq| %>
+        <% @resource.indicator_resources.each do |ir| %>
           <tr>
-            <td><%= link_to iq.indicator.description, indicator_path(iq.indicator, :competency_id => @competency_id) %></td>
+            <td><%= link_to ir.indicator.description, indicator_path(ir.indicator, :competency_id => @competency_id) %></td>
             <td>
-              <%= link_to "Manage", indicator_path(iq.indicator),
+              <%= link_to "Manage", indicator_path(ir.indicator, :competency_id => @competency_id),
                   class: "waves-effect waves-light btn" %>
             </td>
           </tr>
@@ -58,8 +58,15 @@
 <br><br>
 <div class="divider"></div>
 <br><br>
-<a id="back-button" href="<%= resources_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
-  Return to this competency's resources
-  <i class="material-icons left">navigate_before</i>
-</a>
+<% if @competency_id %>
+  <a id="back-button" href="<%= resources_path(:competency_id => @competency_id) %>" class="btn-large waves-effect waves-light">
+    Return to this competency's resources
+    <i class="material-icons left">navigate_before</i>
+  </a>
+<% else %>
+  <a id="back-button" href="<%= resources_path() %>" class="btn-large waves-effect waves-light">
+    Return to all resources
+    <i class="material-icons left">navigate_before</i>
+  </a>
+<% end %>
 <br><br>

@@ -51,7 +51,7 @@
         <li>
           <div class="collapsible-header">
             <i class="material-icons tooltipped level-icon" data-level="<%= indicator.level.name %>" data-position="left" data-delay="50" data-tooltip="<%= indicator.level.name %>">assignment_turned_in</i>
-            <%= indicator.description.html_safe %>
+            <%= indicator.description.html_safe %> <%= "(#{indicator.level.name})" %>
           </div>
 
           <div class="collapsible-body indicator">

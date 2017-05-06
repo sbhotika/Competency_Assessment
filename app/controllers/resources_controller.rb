@@ -52,7 +52,7 @@ class ResourcesController < ApplicationController
   def update
     if @resource.update(resource_params)
       flash[:notice] = "Successfully updated #{@resource.title}"
-      redirect_to resource_path(@resource)
+      redirect_to resource_path(@resource,:competency_id => params[:competency_id])
     else
       render "edit"
     end
@@ -62,7 +62,7 @@ class ResourcesController < ApplicationController
   def destroy
     @resource.destroy
     flash[:notice] = "Successfully deleted #{@resource.title}"
-    redirect_to resources_path
+    redirect_to resources_path(:competency_id => params[:competency_id])
   end
 
 

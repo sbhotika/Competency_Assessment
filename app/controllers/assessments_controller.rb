@@ -18,6 +18,14 @@ class AssessmentsController < ApplicationController
   def disclaimer
   end
 
+  # GET /assessments/send_email/:email
+  def send_email
+    @email = params[:email]
+    @link = request.referer
+    AssessmentMailer.send_assessment(@email,@link).deliver_now
+    redirect_to @link
+  end
+
   # POST /assessments/take
   def take
     if !params[:accept]
@@ -31,15 +39,15 @@ class AssessmentsController < ApplicationController
   def generate_report
     questions = params[:questions]
 
-    # Create a new hash where each question id is placed in the 
+    # Create a new hash where each question id is placed in the
     # corresponding stage based on user's answers
     @developing_stages = Hash.new
     @developing_stages[:developed] = Array.new
     @developing_stages[:developing] = Array.new
     @developing_stages[:emerging] = Array.new
-    @developing_stages[:does_not_apply] = Array.new
 
     # Goes through each answer and place the respective question in the appropriate stage
+    # For now we will ignore the does not apply category
     questions.each do |qid, answer_hash|
       answer = answer_hash[:answer]
       if DEVELOPED_ANSWERS.include? answer
@@ -48,8 +56,6 @@ class AssessmentsController < ApplicationController
           @developing_stages[:developing] << qid
       elsif EMERGINg_ANSWERS.include? answer
           @developing_stages[:emerging] << qid
-      else
-          @developing_stages[:does_not_apply] << qid
       end
     end
 
@@ -62,7 +68,7 @@ class AssessmentsController < ApplicationController
     @levels = Level.all.by_ranking
     @paradigms = Paradigm.all.by_ranking
 
-    # Create a new hash with the appropriate indicators 
+    # Create a new hash with the appropriate indicators
     # (based on the question id's) in the corresponding stage
     @indicators_resources = Hash.new
     @indicators_resources["developed"] = Array.new
@@ -86,7 +92,7 @@ class AssessmentsController < ApplicationController
 
       # Convert the Set of indicators to an array and sort based on level
       # and place in the proper stage in the @indicators_resources hash
-      @indicators_resources[stage] = 
+      @indicators_resources[stage] =
         current_stage.to_a.sort {|a,b| a.level.ranking <=> b.level.ranking}
     end
 

@@ -8,8 +8,8 @@
     </div>
     <div class="card-action">
 
-        <%= link_to "Edit", edit_question_path(@question), class: "waves-effect waves-light btn" %>
-        <%= link_to "Delete", question_path(@question),
+        <%= link_to "Edit", edit_question_path(@question, :competency_id => @competency_id), class: "waves-effect waves-light btn" %>
+        <%= link_to "Delete", question_path(@question, :competency_id => @competency_id),
             method: 'delete',
             data: {confirm: "Are you sure you want to permanently delete #{@question.question}?"},
             class: "waves-effect waves-light btn red" %>
@@ -33,7 +33,7 @@
           <tr>
             <td><%= link_to iq.indicator.description, indicator_path(iq.indicator) %></td>
             <td>
-              <%= link_to "Delete", indicator_question_path(iq),
+              <%= link_to "Delete", indicator_question_path(iq, :competency_id => @competency_id),
                   method: 'delete',
                   data: {confirm: "Are you sure you want to permanently delete this mapping?"},
                   class: "waves-effect waves-light btn red" %>
@@ -45,6 +45,6 @@
 <% end %>
 <br>
 <div= "container">
-  <%= link_to "Create Indicator Question Mapping", new_indicator_question_path(:question => @question), class: "waves-effect waves-light btn-large" %>
+  <%= link_to "Create Indicator Question Mapping", new_indicator_question_path(:question => @question, :competency_id => @competency_id), class: "waves-effect waves-light btn-large" %>
 </div>
 <br><br>

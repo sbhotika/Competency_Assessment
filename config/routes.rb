@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post '/assessments/take' => 'assessments#take', as: :take_assessment
   post '/assessments/report' => 'assessments#generate_report', as: :generate_report_assessment
   get '/assessments/report' => 'assessments#report', as: :report_assessment
+  get 'assessments/send_email' => 'assessments#send_email', as: :send_email
 
   # Model Resources for CRUD operations
   resources :competencies

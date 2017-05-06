@@ -28,11 +28,12 @@ class QuestionsController < ApplicationController
   # POST /questions
   def create
     @question = Question.new(question_params)
+    @competency_id = params[:competency_id]
     if @question.save
       flash[:notice] = "Successfully created #{@question.question}"
-      redirect_to question_path(@question)
+      redirect_to question_path(@question, :competency_id => @competency_id)
     else
-      render "new"
+      redirect_to new_question_path(:competency_id => @competency_id)
     end
   end
 
@@ -43,19 +44,21 @@ class QuestionsController < ApplicationController
 
   # PATCH/PUT /questions/:id
   def update
+    @competency_id = params[:competency_id]
     if @question.update(question_params)
       flash[:notice] = "Successfully updated #{@question.question}"
-      redirect_to question_path(@question)
+      redirect_to question_path(@question, :competency_id => @competency_id)
     else
-      render "edit"
+      redirect_to edit_question_path(:competency_id => @competency_id)
     end
   end
 
   # DELETE /questions/:id
   def destroy
     @question.destroy
+    @competency_id = params[:competency_id]
     flash[:notice] = "Successfully deleted #{@question.question}"
-    redirect_to questions_path
+    redirect_to questions_path(:competency_id => @competency_id)
   end
 
 

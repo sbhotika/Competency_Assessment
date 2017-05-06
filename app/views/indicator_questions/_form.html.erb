@@ -18,7 +18,9 @@
   <%= f.hidden_field :question_id, :value => @question.id %>
 
   <div>
-    <%= f.submit :class => 'waves-effect waves-light btn red' %>
+    <%= button_to "Submit", class: "waves-effect waves-light btn red", name: "competency_id", value: @competency_id do %>
+      Submit <i class="material-icons right">send</i>
+    <% end %>
   </div>
 
 <% end %>

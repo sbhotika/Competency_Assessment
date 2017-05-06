@@ -17,7 +17,7 @@
             <td><%= link_to q.question, question_path(q, :competency_id => @competency_id) %></td>
             <td><%= link_to "Edit", edit_question_path(q, :competency_id => @competency_id), class: "waves-effect waves-light btn" %></td>
             <td>
-              <%= link_to "Delete", question_path(q),
+              <%= link_to "Delete", question_path(q, :competency_id => @competency_id),
                   method: 'delete',
                   data: {confirm: "Are you sure you want to permanently delete #{q.question}?"},
                   class: "waves-effect waves-light btn red" %>

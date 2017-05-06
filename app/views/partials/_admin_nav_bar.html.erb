@@ -12,6 +12,7 @@
         <%= image_tag "logos/PDS_plain_logo_white_horiz.png", id: "pds-logo" %>
       </a>
       <ul class="right hide-on-med-and-down">
+        <li><a href="<%= root_path %>"><i class="material-icons">home</i></a></li>
         <li class="<%= 'active' if current_page?(dashboard_path) %>"><%= link_to "Dashboard", dashboard_path %></li>
         <li class="<%= 'active' if current_page?(resources_path) %>"><%= link_to "Resources", resources_path %></li>
         <li class="<%= 'active' if current_page?(paradigms_path) %>"><%= link_to "Paradigms", paradigms_path %></li>
@@ -24,6 +25,7 @@
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
+        <li><a href="<%= root_path %>"><i class="material-icons">home</i></a></li>
         <li class="<%= 'active' if current_page?(dashboard_path) %>"><%= link_to "Dashboard", dashboard_path %></li>
         <li class="<%= 'active' if current_page?(resources_path) %>"><%= link_to "Resources", resources_path %></li>
         <li class="<%= 'active' if current_page?(paradigms_path) %>"><%= link_to "Paradigms", paradigms_path %></li>

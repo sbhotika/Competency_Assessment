@@ -25,6 +25,8 @@
 <div class="divider"></div>
 <div class="center-text">
   <h2>Import Data</h2>
+  <%= link_to "Excel Import Template", "/Competency-Assessment-Mapping-Template.xlsx" %>
+  <br><br>
   <%= form_tag parse_imports_path, multipart: true do %>
     <%= file_field_tag :file, accept: ".xls,.xlsx" %>
     <button class="btn waves-effect waves-light" type="submit" name="action">Import

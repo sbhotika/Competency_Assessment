@@ -12,7 +12,7 @@ class IndicatorResourcesController < ApplicationController
 
   def new
     @indicator_resource = IndicatorResource.new
-    @indicator = Indicator.find_by(params[:indicator])
+    @indicator = Indicator.find_by(id: params[:indicator])
     @competency_id = params[:competency_id]
   end
 

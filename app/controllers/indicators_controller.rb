@@ -42,6 +42,7 @@ class IndicatorsController < ApplicationController
   # GET /indicators/:id/edit
   def edit
     @competency_id = params[:competency_id]
+    @competency = Competency.find(params[:competency_id])
   end
 
   # PATCH/PUT /indicators/:id
